@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -22,25 +24,23 @@ import javax.swing.Timer;
 public class Tablero extends JPanel implements ActionListener {
 
     private Timer timer;
-    private int x, z;
-    private int y, w;
+    private int movX = 0, movY = 0;
     private int secuencia;
     private int numero;
-
+    public Personaje player;
 
     public Tablero() {
         //Lanza un evento de tipo ActionListener cada 25 Milisegundo
         //Se hace referencia a this porque la misma clase (Tablero) procesa el evento
         this.timer = new Timer(25, this);
-        this.x = 0;
-        this.y = 70;
-        this.z = 260;
-        this.w = 330;
         this.numero = 0;
         this.secuencia = 0;
         setFocusable(true);
         addKeyListener(new EventosTeclado());
         this.timer.start();
+
+        player = new Personaje(0, 260, 70, 330, 161, 162, 214, 209, "personaje1.png");
+
     }
 
     @Override
@@ -55,10 +55,8 @@ public class Tablero extends JPanel implements ActionListener {
         g.drawImage(plataforma1, 550, 325, 850, 525, 461, 81, 720, 335, this);
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
-        Image personaje1 = loadImage("personaje1.png");
-        g.drawImage(personaje1, this.x, this.z, this.y, this.w, 161, 162, 214, 209, this);
-       
-
+        g.translate(movX, movY);
+        pintar(g, player);
     }
 
     @Override
@@ -72,45 +70,51 @@ public class Tablero extends JPanel implements ActionListener {
         return image;
     }
 
+    public boolean pintar(Graphics G, Personaje P) {
+        Image p = loadImage(P.getImage());
+        return G.drawImage(p, P.getDx1(), P.getDy1(), P.getDx2(), P.getDy2(), P.getSx1(), P.getSy1(), P.getSx2(), P.getSy2(), this);
+    }
+
     private class EventosTeclado extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_D) {
+                player.setDx1(0);
+                player.setDx2(70);
+                movX += 4;
+
+            }
+
+            if (key == KeyEvent.VK_A) {
+                player.setDx2(0);
+                player.setDx1(70);
+                movX += -4;
+            }
+
+            if (key == KeyEvent.VK_W) {
+                player.setDy2(290);
+                player.setDy1(220);
+
+            }
+        }
 
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_W) {
-
-                z += 40;
-                w += 40;
-
+                player.plusDy2(40);
+                player.plusDy1(40);
             }
-        }
+            if (key == KeyEvent.VK_A) {
 
-        
-        public void keyPressed(KeyEvent e) {
-            int key = e.getKeyCode();
-            if (key == KeyEvent.VK_D) {
-                x+=4;
-                y+=4;
-               
-                
-            }
-            
-            if(key == KeyEvent.VK_A){
-                x-=4;
-                y-=4;
-            }
-            
-            if (key == KeyEvent.VK_W) {
-                if (z == 220 && w == 290 || z==300 && w==370) {
-                    z = 260;
-                    w = 330;
-                } else {
-                    z -= 40;
-                    w -= 40;
-                }
+                player.setDx1(70);
+                player.setDx2(0);
 
             }
         }
+
     }
 
 }

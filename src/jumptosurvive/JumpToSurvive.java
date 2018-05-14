@@ -5,7 +5,6 @@
  */
 package jumptosurvive;
 
-
 import java.awt.Point;
 import javax.swing.JFrame;
 
@@ -15,11 +14,13 @@ import javax.swing.JFrame;
  */
 public class JumpToSurvive extends JFrame {
 
-    public JumpToSurvive(){
+    public JumpToSurvive() {
         initUI();
     }
-        private void initUI() {
+
+    private void initUI() {
         add(new Tablero());
+        //800 w y 500 h
         setSize(800, 500);
         setTitle("Jump To Survive");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,9 +29,8 @@ public class JumpToSurvive extends JFrame {
         setVisible(true);
     }
 
-   
     public static void main(String[] args) {
         JumpToSurvive jtp = new JumpToSurvive();
     }
-    
+
 }
