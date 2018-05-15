@@ -7,6 +7,7 @@ package jumptosurvive;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -49,10 +50,10 @@ public class Tablero extends JPanel implements ActionListener {
         Image fondo = loadImage("4.jpg");
         g.drawImage(fondo, 0, 0, null);
         Image plataforma1 = loadImage("plataforma1.png");
-        g.drawImage(plataforma1, -15, 325, 250, 600, 461, 81, 720, 335, this);
-        g.drawImage(plataforma1, 300, 250, 350, 300, 920, 46, 1047, 166, this);
-        g.drawImage(plataforma1, 455, 250, 505, 300, 920, 46, 1047, 166, this);
-        g.drawImage(plataforma1, 550, 325, 850, 525, 461, 81, 720, 335, this);
+        g.drawImage(plataforma1, -15, 325, 250, 600, 461, 81, 720, 335, this); //Plataforma de suelo derecha
+        g.drawImage(plataforma1, 550, 325, 850, 525, 461, 81, 720, 335, this); // Plataforma de suelo izquierda
+        g.drawImage(plataforma1, 300, 250, 350, 300, 920, 46, 1047, 166, this); //Bloque de hielo 
+        g.drawImage(plataforma1, 455, 250, 505, 300, 920, 46, 1047, 166, this);// Bloque de hielo
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
         g.translate(movX, movY);
@@ -62,6 +63,7 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
+       //checkCollisions();         //Se ejecuta la funcion de verificar colisiones
     }
 
     public Image loadImage(String imageName) {
@@ -115,6 +117,24 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
 
+    }
+    
+    public void checkCollisions() {
+     Rectangle playerBordes = player.getBounds();
+     Rectangle bordes1 = new Rectangle(-15, 325, 250-15, 600-325);          //Bordes de la plataforma para las colisiones
+     Rectangle bordes2 = new Rectangle(550, 325, 850-550, 525-325);         //creados a partir de los paint components
+     Rectangle bordes3 = new Rectangle(300, 250, 350-300, 300-250);
+     Rectangle bordes4 = new Rectangle(455, 250, 505-455, 300-250);
+     if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) ||playerBordes.intersects(bordes3)||playerBordes.intersects(bordes4)) {
+         System.out.println("Han colisionado .....");
+     }
+//      if(coin != null){
+//      Rectangle moneda = this.coin.getBounds();
+//         if(rCraft.intersects(moneda)){
+//             System.out.println("A colisionado con la moneda");
+//             this.coin.setVisible(false);
+//         }
+//      }
     }
 
 }
