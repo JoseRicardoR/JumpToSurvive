@@ -55,6 +55,7 @@ public class Tablero extends JPanel implements ActionListener {
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
         g.translate(movX, movY);
+        g.drawRect(player.getBounds().x,player.getBounds().y,player.getBounds().width, player.getBounds().height);
         pintar(g, player);
     }
 
@@ -119,13 +120,23 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void checkCollisions() {
         Rectangle playerBordes = player.getBounds();
-        Rectangle bordes1 = new Rectangle(-15, 325, 250 - 15, 600 - 325);          //Bordes de la plataforma para las colisiones
-        Rectangle bordes2 = new Rectangle(550, 325, 850 - 550, 525 - 325);         //creados a partir de los paint components
-        Rectangle bordes3 = new Rectangle(300, 250, 350 - 300, 300 - 250);
         Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
-        if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
+        if (playerBordes.intersects(bordes4)) {
             System.out.println("Han colisionado .....");
         }
+
+//    public void checkCollisions() {
+//        Rectangle playerBordes = player.getBounds();
+//        Rectangle bordes1 = new Rectangle(-15, 325, 250 - 15, 600 - 325);          //Bordes de la plataforma para las colisiones
+//        Rectangle bordes2 = new Rectangle(550, 325, 850 - 550, 525 - 325);         //creados a partir de los paint components
+//        Rectangle bordes3 = new Rectangle(300, 250, 350 - 300, 300 - 250);
+//        Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
+//        if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
+//            System.out.println("Han colisionado .....");
+//            player.setCayo(true);
+//        } else {
+//            player.setCayo(false);
+//        }
 //      if(coin != null){
 //      Rectangle moneda = this.coin.getBounds();
 //         if(rCraft.intersects(moneda)){
