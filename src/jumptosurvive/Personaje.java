@@ -13,8 +13,9 @@ import java.awt.Rectangle;
  */
 public class Personaje extends Thread {
 
-    private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;
+    private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
+    private boolean cayo;
     private int gravedad = 1;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
@@ -27,11 +28,24 @@ public class Personaje extends Thread {
         this.sx2 = sx2;
         this.sy2 = sy2;
         this.image = image;
+        this.cayo = false;
     }
 
     @Override
     public void run() {
-        cae(gravedad);
+        if (cayo) {
+            while (true) {
+                cae(gravedad);
+            }
+        }
+    }
+
+    public boolean Cayo() {
+        return cayo;
+    }
+
+    public void setCayo(boolean cayo) {
+        this.cayo = cayo;
     }
 
     public int getDx1() {
@@ -156,8 +170,13 @@ public class Personaje extends Thread {
             plusDy2(g);
         }
     }
-    
-     public Rectangle getBounds() {
-        return new Rectangle(dx1, dy1, dx2-dx1, dy2-dy1);
+
+    public Rectangle getBounds() {
+        if (dx1 == 0 && dx2 == 70) {
+            return new Rectangle(0, dy1, 70, dy2 - dy1);
+            //return new Rectangle(0, 260, 70 - 0, 330 - 260);
+        } else {
+            return new Rectangle(0, dy1, 70, dy2 - dy1);
+        }
     }
 }
