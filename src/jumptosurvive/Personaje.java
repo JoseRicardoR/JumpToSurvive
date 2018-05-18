@@ -5,6 +5,8 @@
  */
 package jumptosurvive;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author Asus
@@ -153,5 +155,9 @@ public class Personaje extends Thread {
             plusDy1(g);
             plusDy2(g);
         }
+    }
+    
+     public Rectangle getBounds() {
+        return new Rectangle(dx1, dy1, dx2-dx1, dy2-dy1);
     }
 }
