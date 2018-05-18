@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -63,7 +61,7 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
-       //checkCollisions();         //Se ejecuta la funcion de verificar colisiones
+        //checkCollisions();         //Se ejecuta la funcion de verificar colisiones
     }
 
     public Image loadImage(String imageName) {
@@ -118,16 +116,16 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-    
+
     public void checkCollisions() {
-     Rectangle playerBordes = player.getBounds();
-     Rectangle bordes1 = new Rectangle(-15, 325, 250-15, 600-325);          //Bordes de la plataforma para las colisiones
-     Rectangle bordes2 = new Rectangle(550, 325, 850-550, 525-325);         //creados a partir de los paint components
-     Rectangle bordes3 = new Rectangle(300, 250, 350-300, 300-250);
-     Rectangle bordes4 = new Rectangle(455, 250, 505-455, 300-250);
-     if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) ||playerBordes.intersects(bordes3)||playerBordes.intersects(bordes4)) {
-         System.out.println("Han colisionado .....");
-     }
+        Rectangle playerBordes = player.getBounds();
+        Rectangle bordes1 = new Rectangle(-15, 325, 250 - 15, 600 - 325);          //Bordes de la plataforma para las colisiones
+        Rectangle bordes2 = new Rectangle(550, 325, 850 - 550, 525 - 325);         //creados a partir de los paint components
+        Rectangle bordes3 = new Rectangle(300, 250, 350 - 300, 300 - 250);
+        Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
+        if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
+            System.out.println("Han colisionado .....");
+        }
 //      if(coin != null){
 //      Rectangle moneda = this.coin.getBounds();
 //         if(rCraft.intersects(moneda)){
