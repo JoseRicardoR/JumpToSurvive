@@ -54,7 +54,8 @@ public class Tablero extends JPanel implements ActionListener {
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
    
-        blocks.add(new Elements("coin.png",  290, 190, 340, 240, 0, 0, 82, 82));
+        blocks.add(new Elements("coin.png",  290, 190, 340, 240, 0, 0, 82, 82)); // Moneda
+        blocks.add(new Elements("flag.png",  690, 255, 760, 325, 0, 0, 512, 512)); // Meta
   
     }
 
@@ -69,7 +70,7 @@ public class Tablero extends JPanel implements ActionListener {
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
 
         if (silhouette) {//dibujade los rectangulos de los bloques de colisiones
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < this.blocks.size(); i++) {
                 debugRect(g, blocks.get(i).getRect());
             }
         }
@@ -161,16 +162,14 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void checkCollisions(Personaje p, int[] mov) {
         Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
-        Rectangle bordes1 = new Rectangle(-15, 325, 250 - 15, 600 - 325);          //Bordes de la plataforma para las colisiones
-        Rectangle bordes2 = new Rectangle(550, 325, 850 - 550, 525 - 325);         //creados a partir de los paint components
-        Rectangle bordes3 = new Rectangle(300, 250, 350 - 300, 300 - 250);
-        Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
-        if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
-            System.out.println("Han colisionado .....");
-            //p.setCayo(true);
-        } else {
-            System.out.println("No colisiona...");
-            //p.setCayo(false);
+        for (int i = 0; i < this.blocks.size(); i++) {
+            if(playerBordes.intersects(this.blocks.get(i).getRect())){
+                System.out.println("Hay alguna colision");
+                //p.setCayo(true);
+            }
+            else{
+                //p.setCayo(false);
+            }
         }
     }
 //    public void checkCollisions2() {
