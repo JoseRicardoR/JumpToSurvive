@@ -25,6 +25,6 @@ public class Mensaje {
     }
        
     public void show() {
-    JOptionPane.showMessageDialog(null, "Java is fun!");
+     JOptionPane.showMessageDialog(null, this.mensaje, "Felicidades ",JOptionPane.PLAIN_MESSAGE);
     }
 }
