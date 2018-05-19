@@ -53,10 +53,10 @@ public class Tablero extends JPanel implements ActionListener {
 
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
-   
-        blocks.add(new Elements("coin.png",  290, 190, 340, 240, 0, 0, 82, 82)); // Moneda
-        blocks.add(new Elements("flag.png",  690, 255, 760, 325, 0, 0, 512, 512)); // Meta
-  
+
+        blocks.add(new Elements("coin.png", 290, 190, 340, 240, 0, 0, 82, 82)); // Moneda
+        blocks.add(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512)); // Meta
+
     }
 
     @Override
@@ -83,6 +83,7 @@ public class Tablero extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         repaint();
         checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
+
     }
 
     public Image loadImage(String imageName) {
@@ -161,22 +162,24 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void checkCollisions(Personaje p, int[] mov) {
+        boolean colision;
         Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
         for (int i = 0; i < this.blocks.size(); i++) {
-            if(playerBordes.intersects(this.blocks.get(i).getRect())){
-                System.out.println("Hay alguna colision");
+            if (playerBordes.intersects(this.blocks.get(i).getRect())) {
+                //System.out.println("Hay colision con "+ i);
                 //p.setCayo(true);
-            }
-            else{
+                colision = true;
+                if (this.blocks.get(i).getImage().equals("coin.png")) {
+                    System.out.println("Moneda recolectada");
+                    this.blocks.remove(this.blocks.get(i));
+                }
+            } else {
                 //p.setCayo(false);
+                //System.out.println("No hay colision con " +i);
+                colision = false;
             }
         }
     }
-//    public void checkCollisions2() {
-//        Rectangle playerBordes = player.getBounds();
-//        Rectangle bordesCoin = new Rectangle(290, 190, 70,70 );
-//     
-//    }
 
     //funcion de prueba-----------------------------------------------------------------------------------------------------------------------------------+
     public void debugRect(Graphics g, Rectangle r) {
