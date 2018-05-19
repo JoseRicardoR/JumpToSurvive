@@ -48,8 +48,8 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer.start();
         player = new Personaje(0, 260, 70, 330, 161, 162, 214, 209, "personaje1.png");
 
-        blocks.add(new Elements(-15, 325, 250, 600, 461, 81, 720, 335));//bloque inferior izquierdo
-        blocks.add(new Elements(555, 325, 850, 525, 461, 81, 720, 335));//bloque inferior derecha
+        blocks.add(new Elements(-15, 325, 250, 600, 466, 81, 720, 335));//bloque inferior izquierdo
+        blocks.add(new Elements(555, 325, 850, 525, 466, 81, 720, 335));//bloque inferior derecha
 
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
@@ -71,19 +71,24 @@ public class Tablero extends JPanel implements ActionListener {
 
         if (silhouette) {//dibujade los rectangulos de los bloques de colisiones
             for (int i = 0; i < this.blocks.size(); i++) {
-                debugRect(g, blocks.get(i).getRect());
+                blocks.get(i).debugRect(g);
             }
         }
+
         g.translate(mov[0], mov[1]);
-        debugRect(g, player.getBounds());
+        player.debugRect(g);
         pintar(g, player);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
+<<<<<<< HEAD
         checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
 
+=======
+//        checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
+>>>>>>> 2da47c8a4ebf1808e4e3678b6a7ed563589c6c8d
     }
 
     public Image loadImage(String imageName) {
@@ -114,12 +119,11 @@ public class Tablero extends JPanel implements ActionListener {
 
             //debug colisiones
             if (key == KeyEvent.VK_F10) {
-                if (silhouette) {
-                    silhouette = false;
-                } else {
-                    silhouette = true;
-                }
+                silhouette = !silhouette;
             }
+            if (key == KeyEvent.VK_F11) {
+            }
+//            _-------------------------------------------------------------------------------------------------------------------
             if (key == KeyEvent.VK_D) {
                 player.setDx1(0);
                 player.setDx2(70);
@@ -160,6 +164,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
+<<<<<<< HEAD
 
     public void checkCollisions(Personaje p, int[] mov) {
         boolean colision;
@@ -180,9 +185,24 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
     }
+=======
+//
+//    public void checkCollisions(Personaje p, int[] mov) {
+//        Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
+//        for (int i = 0; i < this.blocks.size(); i++) {
+//            if (playerBordes.intersects(this.blocks.get(i).getRect())) {
+//                System.out.println("Hay alguna colision");
+//                //p.setCayo(true);
+//            } else {
+//                //p.setCayo(false);
+//            }
+//}
+//}
+//    public void checkCollisions2() {
+//        Rectangle playerBordes = player.getBounds();
+//        Rectangle bordesCoin = new Rectangle(290, 190, 70,70 );
+//     
+//    }
+>>>>>>> 2da47c8a4ebf1808e4e3678b6a7ed563589c6c8d
 
-    //funcion de prueba-----------------------------------------------------------------------------------------------------------------------------------+
-    public void debugRect(Graphics g, Rectangle r) {
-        g.drawRect(r.x, r.y, r.width, r.height);
-    }
 }

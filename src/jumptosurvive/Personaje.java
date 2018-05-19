@@ -5,6 +5,7 @@
  */
 package jumptosurvive;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
@@ -175,5 +176,9 @@ public class Personaje extends Thread {
 
         return new Rectangle(0, dy1, 70, dy2 - dy1);
         //return new Rectangle(0, 260, 70 - 0, 330 - 260);
+    }
+
+    public void debugRect(Graphics g) {
+        g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
     }
 }
