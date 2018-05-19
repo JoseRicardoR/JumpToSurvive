@@ -5,6 +5,7 @@
  */
 package jumptosurvive;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
@@ -15,7 +16,9 @@ public class Elements {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
-    private Rectangle rect;
+    private Rectangle rect = new Rectangle(dx1, dy1, Math.abs(dx2 - dx1), dy2 - dy1);
+
+    ;
 
     public Elements(String image, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2) {
         this.dx1 = dx1;
@@ -27,7 +30,7 @@ public class Elements {
         this.sx2 = sx2;
         this.sy2 = sy2;
         this.image = image;
-        this.rect = new Rectangle(dx1, dy1, Math.abs(dx2 - Math.abs(dx1)), dy2 - dy1);
+        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
     }
 
     public Elements(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2) {
@@ -40,7 +43,7 @@ public class Elements {
         this.sx2 = sx2;
         this.sy2 = sy2;
         this.image = "plataforma1.png";
-        this.rect = new Rectangle(dx1, dy1, Math.abs(dx2 - Math.abs(dx1)), dy2 - dy1);
+        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
 
     }
 
@@ -122,6 +125,10 @@ public class Elements {
 
     public void setRect(Rectangle rect) {
         this.rect = rect;
+    }
+
+    public void debugRect(Graphics g) {
+        g.drawRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     }
 
 }
