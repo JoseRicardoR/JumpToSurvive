@@ -53,8 +53,9 @@ public class Tablero extends JPanel implements ActionListener {
 
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
-        
-        
+   
+        blocks.add(new Elements("coin.png",  290, 190, 340, 240, 0, 0, 82, 82));
+  
     }
 
     @Override
@@ -66,8 +67,6 @@ public class Tablero extends JPanel implements ActionListener {
         pintar(g, blocks);
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
-        Image coin = loadImage("coin.png");
-        g.drawImage(coin,  290, 190, 340, 240, 0, 0, 82, 82,this);
 
         if (silhouette) {//dibujade los rectangulos de los bloques de colisiones
             for (int i = 0; i < 4; i++) {
@@ -168,9 +167,10 @@ public class Tablero extends JPanel implements ActionListener {
         Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
         if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
             System.out.println("Han colisionado .....");
-            p.setCayo(true);
+            //p.setCayo(true);
         } else {
-            p.setCayo(false);
+            System.out.println("No colisiona...");
+            //p.setCayo(false);
         }
     }
 //    public void checkCollisions2() {
