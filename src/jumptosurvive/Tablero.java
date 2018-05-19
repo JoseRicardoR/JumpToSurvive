@@ -82,7 +82,7 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
-        //checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
+        checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
     }
 
     public Image loadImage(String imageName) {
@@ -168,9 +168,9 @@ public class Tablero extends JPanel implements ActionListener {
         Rectangle bordes4 = new Rectangle(455, 250, 505 - 455, 300 - 250);
         if (playerBordes.intersects(bordes1) || playerBordes.intersects(bordes2) || playerBordes.intersects(bordes3) || playerBordes.intersects(bordes4)) {
             System.out.println("Han colisionado .....");
-            //p.setCayo(true);
+            p.setCayo(true);
         } else {
-            //p.setCayo(false);
+            p.setCayo(false);
         }
     }
 //    public void checkCollisions2() {
