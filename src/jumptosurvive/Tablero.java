@@ -33,7 +33,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Personaje player;
     private ArrayList<Elements> blocks = new ArrayList<>();
     private Cronometro cronometro;
-      private boolean monedaRecogida;
+    private boolean monedaRecogida;
 
     public Tablero() {
         //Lanza un evento de tipo ActionListener cada 25 Milisegundo
@@ -43,7 +43,7 @@ public class Tablero extends JPanel implements ActionListener {
         this.secuencia = 0;
         this.cronometro = new Cronometro();
         this.cronometro.iniciarCronometro();
-         this.monedaRecogida = false;
+        this.monedaRecogida = false;
         //debug------------------
         this.silhouette = false;
         //end debug-------------------
@@ -58,7 +58,7 @@ public class Tablero extends JPanel implements ActionListener {
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
 
-       blocks.add(new Elements("coin.png", 300, 190, 350, 240, 0, 0,0, 100)); // Moneda
+        blocks.add(new Elements("coin.png", 300, 190, 350, 240, 0, 0, 0, 100)); // Moneda
         blocks.add(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512)); // Meta
 
     }
@@ -72,23 +72,19 @@ public class Tablero extends JPanel implements ActionListener {
 
         Image fondo = loadImage("4.jpg");
         g.drawImage(fondo, 0, 0, null);
-<<<<<<< HEAD
-        
-        if(this.numero % 10 == 0){      
-        if(this.secuencia == 9){
+
+        if (this.numero % 10 == 0) {
+            if (this.secuencia == 9) {
                 this.secuencia = 0;
-            }else{
+            } else {
                 this.secuencia++;
             }
-       }
-      if(monedaRecogida == false){
-       Image coin = loadImage("coin.png");
-       g.drawImage(coin, 300, 190, 350, 240, 100*this.secuencia, 0, 100*(this.secuencia)+100, 100, this);  
-      } 
-        
-=======
+        }
+        if (monedaRecogida == false) {
+            Image coin = loadImage("coin.png");
+            g.drawImage(coin, 300, 190, 350, 240, 100 * this.secuencia, 0, 100 * (this.secuencia) + 100, 100, this);
+        }
 
->>>>>>> 9e9b6657fc421bd1e789009f35d7c708ba124c6c
         pintar(g, blocks);
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
@@ -104,14 +100,13 @@ public class Tablero extends JPanel implements ActionListener {
         g.translate(mov[0], mov[1]);
         player.debugRect(g);
         pintar(g, player);
-        player.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
         checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
-         this.numero++;
+        this.numero++;
     }
 
     public Image loadImage(String imageName) {
@@ -130,10 +125,10 @@ public class Tablero extends JPanel implements ActionListener {
         while (iterator.hasNext()) {
             Elements b = iterator.next();
             Image p = loadImage(b.getImage());
-             if(!b.getImage().equals("coin.png")){
-            G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
-             }
+            if (!b.getImage().equals("coin.png")) {
+                G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
             }
+        }
     }
 
     private class EventosTeclado extends KeyAdapter {
@@ -194,13 +189,8 @@ public class Tablero extends JPanel implements ActionListener {
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
-<<<<<<< HEAD
-                      this.monedaRecogida= true;
-                }
-                else if (this.blocks.get(i).getImage().equals("flag.png")){
-=======
+                    this.monedaRecogida = true;
                 } else if (this.blocks.get(i).getImage().equals("flag.png")) {
->>>>>>> 9e9b6657fc421bd1e789009f35d7c708ba124c6c
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
                     String men = "Siguiente nivel";
