@@ -17,8 +17,6 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 /**
@@ -93,8 +91,7 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
-        checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
- 
+        checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones 
     }
 
     public Image loadImage(String imageName) {
@@ -184,6 +181,9 @@ public class Tablero extends JPanel implements ActionListener {
                 else if (this.blocks.get(i).getImage().equals("flag.png")){
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
+                    String men = "Siguiente nivel";
+                    Mensaje mensaje = new Mensaje(men);
+                    mensaje.show();
                 }
                     
             } else {
