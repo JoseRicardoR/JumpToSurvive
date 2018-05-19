@@ -7,6 +7,7 @@ public class Cronometro extends Thread{
     Thread hilo;
     
     public Cronometro() {
+        this.texto = "00:00:000";
     }
 
     public boolean isCronometroActivo() {
@@ -80,7 +81,7 @@ public class Cronometro extends Thread{
             }
         }catch(Exception e){}
         //Cuando se reincie se coloca nuevamente en 00:00:000
-        this.texto = "00:00:000" ;
+        //this.texto = "00:00:000" ;
     }
     
     //Iniciar el cronometro poniendo cronometroActivo 

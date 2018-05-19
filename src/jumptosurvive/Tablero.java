@@ -17,6 +17,9 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 /**
  *
@@ -31,8 +34,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int numero;
     private Personaje player;
     private ArrayList<Elements> blocks = new ArrayList<>();
-
-    ;
+    private Cronometro cronometro;
 
     public Tablero() {
         //Lanza un evento de tipo ActionListener cada 25 Milisegundo
@@ -40,6 +42,8 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer = new Timer(25, this);
         this.numero = 0;
         this.secuencia = 0;
+        this.cronometro = new Cronometro();
+        this.cronometro.iniciarCronometro();
         //debug------------------
         this.silhouette = false;
         //end debug-------------------
@@ -62,12 +66,18 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+       // g.setColor(Color.WHITE);
+        
         Image fondo = loadImage("4.jpg");
         g.drawImage(fondo, 0, 0, null);
-
+        
         pintar(g, blocks);
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
+        
+        g.drawString( this.cronometro.getTexto(), 350, 20);
 
         if (silhouette) {//dibujade los rectangulos de los bloques de colisiones
             for (int i = 0; i < this.blocks.size(); i++) {
@@ -84,6 +94,7 @@ public class Tablero extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         repaint();
         checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
+ 
     }
 
     public Image loadImage(String imageName) {
@@ -107,7 +118,7 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     private class EventosTeclado extends KeyAdapter {
-
+        
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
@@ -159,22 +170,25 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
+
     public void checkCollisions(Personaje p, int[] mov) {
-        boolean colision;
         Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
         for (int i = 0; i < this.blocks.size(); i++) {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) {
-                //System.out.println("Hay colision con "+ i);
+                System.out.println("Hay colision con " + i);
                 //p.setCayo(true);
-                colision = true;
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
                 }
+                else if (this.blocks.get(i).getImage().equals("flag.png")){
+                    System.out.println("llegue a la meta");
+                    this.cronometro.pararCronometro();
+                }
+                    
             } else {
                 //p.setCayo(false);
-                //System.out.println("No hay colision con " +i);
-                colision = false;
+                System.out.println("No hay colision con " + i);
             }
         }
     }
