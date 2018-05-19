@@ -83,12 +83,7 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint();
-<<<<<<< HEAD
         checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
-
-=======
-//        checkCollisions(player, mov); //Se ejecuta la funcion de verificar colisiones
->>>>>>> 2da47c8a4ebf1808e4e3678b6a7ed563589c6c8d
     }
 
     public Image loadImage(String imageName) {
@@ -164,8 +159,6 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-<<<<<<< HEAD
-
     public void checkCollisions(Personaje p, int[] mov) {
         boolean colision;
         Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
@@ -185,24 +178,4 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
     }
-=======
-//
-//    public void checkCollisions(Personaje p, int[] mov) {
-//        Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
-//        for (int i = 0; i < this.blocks.size(); i++) {
-//            if (playerBordes.intersects(this.blocks.get(i).getRect())) {
-//                System.out.println("Hay alguna colision");
-//                //p.setCayo(true);
-//            } else {
-//                //p.setCayo(false);
-//            }
-//}
-//}
-//    public void checkCollisions2() {
-//        Rectangle playerBordes = player.getBounds();
-//        Rectangle bordesCoin = new Rectangle(290, 190, 70,70 );
-//     
-//    }
->>>>>>> 2da47c8a4ebf1808e4e3678b6a7ed563589c6c8d
-
 }
