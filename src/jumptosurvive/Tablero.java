@@ -48,7 +48,7 @@ public class Tablero extends JPanel implements ActionListener {
         setFocusable(true);
         addKeyListener(new EventosTeclado());
         this.timer.start();
-        player = new Personaje(0, 260, 70, 330, 161, 162, 214, 209, "personaje1.png");
+        player = new Personaje(0, 60, 70, 130, 161, 162, 214, 209, "personaje1.png");
 
         blocks.add(new Elements(-15, 325, 250, 600, 466, 81, 720, 335));//bloque inferior izquierdo
         blocks.add(new Elements(555, 325, 850, 525, 466, 81, 720, 335));//bloque inferior derecha
@@ -64,18 +64,18 @@ public class Tablero extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-       // g.setColor(Color.WHITE);
-        
+        // g.setColor(Color.WHITE);
+
         Image fondo = loadImage("4.jpg");
         g.drawImage(fondo, 0, 0, null);
-        
+
         pintar(g, blocks);
         Image fuego = loadImage("fire3.png");
         g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
-        
-        g.drawString( this.cronometro.getTexto(), 350, 20);
+
+        g.drawString(this.cronometro.getTexto(), 350, 20);
 
         if (silhouette) {//dibujade los rectangulos de los bloques de colisiones
             for (int i = 0; i < this.blocks.size(); i++) {
@@ -86,6 +86,7 @@ public class Tablero extends JPanel implements ActionListener {
         g.translate(mov[0], mov[1]);
         player.debugRect(g);
         pintar(g, player);
+        player.start();
     }
 
     @Override
@@ -115,7 +116,7 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     private class EventosTeclado extends KeyAdapter {
-        
+
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
@@ -145,8 +146,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
 
             if (key == KeyEvent.VK_W) {
-                player.setDy2(290);
-                player.setDy1(220);
+                //gravedad cambia
 
             }
         }
@@ -154,10 +154,6 @@ public class Tablero extends JPanel implements ActionListener {
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
-            if (key == KeyEvent.VK_W) {
-                player.plusDy2(40);
-                player.plusDy1(40);
-            }
             if (key == KeyEvent.VK_A) {
 
                 player.setDx1(70);
@@ -173,21 +169,20 @@ public class Tablero extends JPanel implements ActionListener {
         for (int i = 0; i < this.blocks.size(); i++) {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) {
                 System.out.println("Hay colision con " + i);
-                //p.setCayo(true);
+                p.setCayo(true);
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
-                }
-                else if (this.blocks.get(i).getImage().equals("flag.png")){
+                } else if (this.blocks.get(i).getImage().equals("flag.png")) {
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
                     String men = "Siguiente nivel";
                     Mensaje mensaje = new Mensaje(men);
                     mensaje.show();
                 }
-                    
+
             } else {
-                //p.setCayo(false);
+                p.setCayo(false);
                 System.out.println("No hay colision con " + i);
             }
         }

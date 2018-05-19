@@ -5,7 +5,6 @@
  */
 package jumptosurvive;
 
-import java.awt.Point;
 import javax.swing.JFrame;
 
 /**
