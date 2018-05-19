@@ -32,13 +32,20 @@ public class Personaje extends Thread {
         this.cayo = false;
     }
 
-    @Override
-    public void run() {
-        if (cayo) {
-            while (true) {
-                cae(gravedad);
+    public void service(int[] movimiento) {
+        new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (cayo) {
+                        gravedad = 0;
+                    } else {
+                        gravedad = 1;
+                    }
+                }
             }
-        }
+
+        };
     }
 
     public boolean Cayo() {
@@ -163,13 +170,6 @@ public class Personaje extends Thread {
 
     public void setGravedad(int gravedad) {
         this.gravedad = gravedad;
-    }
-
-    public void cae(int g) {
-        while (true) {
-            plusDy1(g);
-            plusDy2(g);
-        }
     }
 
     public Rectangle getBounds() {
