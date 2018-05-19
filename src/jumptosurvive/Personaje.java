@@ -172,11 +172,8 @@ public class Personaje extends Thread {
     }
 
     public Rectangle getBounds() {
-        if (dx1 == 0 && dx2 == 70) {
-            return new Rectangle(0, dy1, 70, dy2 - dy1);
-            //return new Rectangle(0, 260, 70 - 0, 330 - 260);
-        } else {
-            return new Rectangle(0, dy1, 70, dy2 - dy1);
-        }
+
+        return new Rectangle(0, dy1, 70, dy2 - dy1);
+        //return new Rectangle(0, 260, 70 - 0, 330 - 260);
     }
 }
