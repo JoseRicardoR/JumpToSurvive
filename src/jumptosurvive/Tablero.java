@@ -27,6 +27,7 @@ public class Tablero extends JPanel implements ActionListener {
 
     private Timer timer;
     private boolean silhouette;
+    ArrayList<Integer> chok = new ArrayList<>();
     private int[] mov = {0, 0};
     private int secuencia;
     private int numero;
@@ -101,10 +102,8 @@ public class Tablero extends JPanel implements ActionListener {
         player.debugRect(g);
         pintar(g, player);
 
-        if (!player.getCayo()) {//si esta cayendo
-            mov[1] += player.getGravedad();
+        mov[1] += player.getGravedad();
 
-        }
     }
 
     @Override
@@ -182,28 +181,37 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void checkCollisions(Personaje p, int[] mov) {
         Rectangle playerBordes = p.getBounds(mov);
-        ArrayList<Integer> chok = new ArrayList<>();
         for (int i = 0; i < this.blocks.size(); i++) {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) {
                 System.out.println("Hay colision con " + i);
 //----------------------------------------------------------------------------------
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
-                    p.setCayo(false);
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
                     this.monedaRecogida = true;
                 } else if (this.blocks.get(i).getImage().equals("flag.png")) {
-                    p.setCayo(false);
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
                     Mensaje mensaje = new Mensaje("Siguiente nivel");
                     mensaje.show();
                 }
 //----------------------------------------------------------------------------------
-                p.setCayo(true);
-                chok.add(i);
-            } else {
-                System.out.println("No hay colision con " + i);
+                p.setGravedad(0);
+                if (!chok.contains(i)) {
+                    chok.add(i);
+                }
+
+            }
+        }
+
+        for (int j = 0; j < chok.size(); j++) {
+            if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect())) {
+                System.out.println("No hay colision");
+                p.setGravedad(1);
+                System.out.println(chok.get(j));
+
+                chok.remove(j);
+
             }
         }
     }

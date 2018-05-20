@@ -16,7 +16,6 @@ public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
-    private boolean cayo;
     private int gravedad = 1;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
@@ -29,7 +28,6 @@ public class Personaje extends Thread {
         this.sx2 = sx2;
         this.sy2 = sy2;
         this.image = image;
-        this.cayo = false;
 
     }
 
@@ -40,14 +38,6 @@ public class Personaje extends Thread {
             }
 
         };
-    }
-
-    public boolean getCayo() {
-        return cayo;
-    }
-
-    public void setCayo(boolean cayo) {
-        this.cayo = cayo;
     }
 
     public int getDx1() {
