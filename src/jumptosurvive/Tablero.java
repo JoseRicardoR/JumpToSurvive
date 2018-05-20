@@ -61,6 +61,8 @@ public class Tablero extends JPanel implements ActionListener {
 
         blocks.add(new Elements("coin.png", 300, 190, 350, 240, 0, 0, 0, 100)); // Moneda
         blocks.add(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512)); // Meta
+        
+        blocks.add(new Elements("spikes.png",250, 410, 555, 480, 0, 0 , 629, 127)); // Obstaculo
 
     }
     
@@ -87,8 +89,6 @@ public class Tablero extends JPanel implements ActionListener {
         }
         
         pintar(g, blocks);
-        Image fuego = loadImage("fire3.png");
-        g.drawImage(fuego, 250, 391, 560, 480, 0, 30, 499, 227, this);
         
         g.drawString(this.cronometro.getTexto(), 350, 20);
         
@@ -190,10 +190,15 @@ public class Tablero extends JPanel implements ActionListener {
                     this.blocks.remove(this.blocks.get(i));
                     this.monedaRecogida = true;
                 } else if (this.blocks.get(i).getImage().equals("flag.png")) {
-                    System.out.println("llegue a la meta");
+                    System.out.println("Llegue a la meta");
                     this.cronometro.pararCronometro();
-                    Mensaje mensaje = new Mensaje("Siguiente nivel");
+                    Mensaje mensaje = new Mensaje("Siguiente nivel", "Felicidades");
                     mensaje.show();
+                } else if (this.blocks.get(i).getImage().equals("spikes.png")) {
+                    System.out.println("Murio");
+                    this.cronometro.pararCronometro();
+                    Mensaje mensaje = new Mensaje("Game over", "Sigue Intentando");
+                    //mensaje.show();
                 }
 //----------------------------------------------------------------------------------
                 p.setGravedad(0);

@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
  * @author joser
  */
 public class Mensaje {
-    private String mensaje;
+    private String mensaje, titulo;
 
-    public Mensaje(String mensaje) {
+    public Mensaje(String mensaje, String titulo) {
         this.mensaje = mensaje;
+        this.titulo = titulo;
     }
 
     public String getMensaje() {
@@ -23,8 +24,17 @@ public class Mensaje {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
        
     public void show() {
-     JOptionPane.showMessageDialog(null, this.mensaje, "Felicidades ",JOptionPane.PLAIN_MESSAGE);
+     JOptionPane.showMessageDialog(null, this.mensaje, this.titulo,JOptionPane.PLAIN_MESSAGE);
     }
 }
