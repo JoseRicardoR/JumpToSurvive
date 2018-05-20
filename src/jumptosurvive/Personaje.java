@@ -36,19 +36,12 @@ public class Personaje extends Thread {
         new Thread() {
             @Override
             public void run() {
-                while (true) {
-                    if (cayo) {
-                        gravedad = 0;
-                    } else {
-                        gravedad = 1;
-                    }
-                }
             }
 
         };
     }
 
-    public boolean Cayo() {
+    public boolean getCayo() {
         return cayo;
     }
 

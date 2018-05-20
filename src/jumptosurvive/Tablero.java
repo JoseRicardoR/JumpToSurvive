@@ -100,6 +100,11 @@ public class Tablero extends JPanel implements ActionListener {
         g.translate(mov[0], mov[1]);
         player.debugRect(g);
         pintar(g, player);
+
+        if (!player.getCayo()) {//si esta cayendo
+            mov[1] += player.getGravedad();
+
+        }
     }
 
     @Override
@@ -194,7 +199,6 @@ public class Tablero extends JPanel implements ActionListener {
                 }
 
             } else {
-                p.setCayo(false);
                 System.out.println("No hay colision con " + i);
             }
         }
