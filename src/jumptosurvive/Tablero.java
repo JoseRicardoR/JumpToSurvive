@@ -181,24 +181,27 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
     public void checkCollisions(Personaje p, int[] mov) {
-        Rectangle playerBordes = new Rectangle(p.getBounds().x + mov[0], p.getBounds().y + mov[1], p.getBounds().width, p.getBounds().height);
+        Rectangle playerBordes = p.getBounds(mov);
+        ArrayList<Integer> chok = new ArrayList<>();
         for (int i = 0; i < this.blocks.size(); i++) {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) {
                 System.out.println("Hay colision con " + i);
-                p.setCayo(true);
-                
 //----------------------------------------------------------------------------------
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
+                    p.setCayo(false);
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
                     this.monedaRecogida = true;
                 } else if (this.blocks.get(i).getImage().equals("flag.png")) {
+                    p.setCayo(false);
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
                     Mensaje mensaje = new Mensaje("Siguiente nivel");
                     mensaje.show();
                 }
 //----------------------------------------------------------------------------------
+                p.setCayo(true);
+                chok.add(i);
             } else {
                 System.out.println("No hay colision con " + i);
             }

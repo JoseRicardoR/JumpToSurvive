@@ -30,6 +30,7 @@ public class Personaje extends Thread {
         this.sy2 = sy2;
         this.image = image;
         this.cayo = false;
+
     }
 
     public void service(int[] movimiento) {
@@ -168,6 +169,12 @@ public class Personaje extends Thread {
     public Rectangle getBounds() {
 
         return new Rectangle(0, dy1, 70, dy2 - dy1);
+        //return new Rectangle(0, 260, 70 - 0, 330 - 260);
+    }
+
+    public Rectangle getBounds(int[] mov) {
+
+        return new Rectangle(mov[0], dy1 + mov[1], 70, dy2 - dy1);
         //return new Rectangle(0, 260, 70 - 0, 330 - 260);
     }
 
