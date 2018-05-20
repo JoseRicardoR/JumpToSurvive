@@ -149,11 +149,6 @@ public class Tablero extends JPanel implements ActionListener {
                 player.setDx2(70);
                 mov[0] += 4;
             }
-            if (key == KeyEvent.VK_D) {
-                player.setDx1(0);
-                player.setDx2(70);
-                mov[0] += 4;
-            }
 
             if (key == KeyEvent.VK_A) {
                 player.setDx2(0);
