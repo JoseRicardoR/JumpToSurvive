@@ -186,6 +186,8 @@ public class Tablero extends JPanel implements ActionListener {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) {
                 System.out.println("Hay colision con " + i);
                 p.setCayo(true);
+                
+//----------------------------------------------------------------------------------
                 if (this.blocks.get(i).getImage().equals("coin.png")) {
                     System.out.println("Moneda recolectada");
                     this.blocks.remove(this.blocks.get(i));
@@ -193,11 +195,10 @@ public class Tablero extends JPanel implements ActionListener {
                 } else if (this.blocks.get(i).getImage().equals("flag.png")) {
                     System.out.println("llegue a la meta");
                     this.cronometro.pararCronometro();
-                    String men = "Siguiente nivel";
-                    Mensaje mensaje = new Mensaje(men);
+                    Mensaje mensaje = new Mensaje("Siguiente nivel");
                     mensaje.show();
                 }
-
+//----------------------------------------------------------------------------------
             } else {
                 System.out.println("No hay colision con " + i);
             }
