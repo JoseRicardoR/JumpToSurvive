@@ -16,7 +16,7 @@ public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
-    private int gravedad = 1;
+    private double gravedad = 1;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
         this.dx1 = dx1;
@@ -148,11 +148,11 @@ public class Personaje extends Thread {
         this.image = image;
     }
 
-    public int getGravedad() {
+    public double getGravedad() {
         return gravedad;
     }
 
-    public void setGravedad(int gravedad) {
+    public void setGravedad(double gravedad) {
         this.gravedad = gravedad;
     }
 
