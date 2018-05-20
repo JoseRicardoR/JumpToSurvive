@@ -16,7 +16,8 @@ public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
-    private double gravedad = 1;
+    private double gravedad = 4;
+    private boolean cayo = false;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
         this.dx1 = dx1;
@@ -171,4 +172,13 @@ public class Personaje extends Thread {
     public void debugRect(Graphics g) {
         g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
     }
+
+    public boolean isCayo() {
+        return cayo;
+    }
+
+    public void setCayo(boolean cayo) {
+        this.cayo = cayo;
+    }
+    
 }
