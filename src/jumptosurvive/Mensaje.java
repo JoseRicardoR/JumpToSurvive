@@ -37,13 +37,19 @@ public class Mensaje {
     public void show() {
     String[] options = {"Inicio", "Siguiente nivel", "Reiniciar"};
     int x = JOptionPane.showOptionDialog(null, this.mensaje, this.titulo, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-    // JOptionPane.showConfirmDialog(null, this.mensaje, this.titulo,JOptionPane.PLAIN_MESSAGE);
-    if(x==0){
-        System.out.println("Volver a Inicio");
-    } else if( x==1){
-        System.out.println("Siguiente nivel");
-    } else if( x==2){
-        System.out.println("Reiniciar nivel");
-    }
+        switch (x) {
+            case 0:
+                System.out.println("Volver a Inicio");
+                
+                break;
+            case 1:
+                System.out.println("Siguiente nivel");
+                break;
+            case 2:
+                System.out.println("Reiniciar nivel");
+                break;
+            default:
+                break;
+        }
     }
 }
