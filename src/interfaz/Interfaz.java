@@ -58,7 +58,7 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(340, 190, 102, 87);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Hades2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/background.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 500);
