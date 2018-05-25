@@ -6,12 +6,19 @@
 package interfaz;
 
 import java.awt.Desktop;
+import java.awt.Frame;
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import jumptosurvive.JumpToSurvive;
 
 /**
@@ -48,9 +55,8 @@ public class Interfaz extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(null);
 
-        jButton4.setBackground(new java.awt.Color(0, 76, 145));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Credits");
+        jButton4.setFocusPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -70,8 +76,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton3.setText("Start Game");
         jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -80,7 +84,7 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(420, 220, 130, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/fondo 2.1.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/fondo 2.2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(280, 90, 430, 100);
 
@@ -93,7 +97,7 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+    MostrarCreditos();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -152,6 +156,10 @@ public class Interfaz extends javax.swing.JFrame {
                 
             }
         });
+    }
+    public void MostrarCreditos(){
+        Icon icono = new ImageIcon(getClass().getResource("/interfaz/icono.png"));
+        JOptionPane.showMessageDialog(rootPane,"Jose Ricardo Rincon\nCamilo Andres Usuga\nYoryi Daniel Martinez ","Desarrolladores",JOptionPane.INFORMATION_MESSAGE,icono);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
