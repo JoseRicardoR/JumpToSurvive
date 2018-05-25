@@ -12,13 +12,15 @@ import javax.swing.JFrame;
  * @author ASUS
  */
 public class JumpToSurvive extends JFrame {
+    private Tablero tablero;
 
     public JumpToSurvive() {
+        this.tablero = new Tablero();
         initUI();
     }
 
     private void initUI() {
-        add(new Tablero());
+        add(this.tablero);
         //800 w y 500 h
         setSize(800, 500);
         setTitle("Jump To Survive");
