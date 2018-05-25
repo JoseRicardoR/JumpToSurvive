@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import jumptosurvive.JumpToSurvive;
+import interfazLevels.InterfazLevels;
 
 /**
  *
@@ -47,6 +48,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,7 +65,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(420, 270, 130, 40);
+        jButton4.setBounds(420, 320, 130, 40);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/ANUNCIO.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +89,15 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/fondo 2.2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(280, 90, 430, 100);
+
+        jButton1.setText("Levels");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(420, 270, 130, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/background.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -116,6 +127,12 @@ public class Interfaz extends javax.swing.JFrame {
         JumpToSurvive jtp = new JumpToSurvive();
         interfaz.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      InterfazLevels levels = new InterfazLevels();
+      levels.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
       static Interfaz interfaz = new Interfaz();
     /**
@@ -163,6 +180,7 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

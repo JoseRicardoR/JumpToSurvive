@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Font;
+import interfazLevels.InterfazLevels;
 
 /**
  *
@@ -207,6 +208,8 @@ public class Tablero extends JPanel implements ActionListener {
                         //String puntuacion = "10";
                         Mensaje mensaje = new Mensaje("Puntuacion: " +puntua, "Felicidades");
                         mensaje.show();
+                   
+                       
                         break;
                     }
                     case "spikes.png": {
