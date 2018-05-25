@@ -5,6 +5,7 @@
  */
 package jumptosurvive;
 
+import interfaz.Interfaz;
 import javax.swing.JFrame;
 
 /**
@@ -27,7 +28,7 @@ public class JumpToSurvive extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setVisible(true);     
     }
 
     public static void main(String[] args) {
