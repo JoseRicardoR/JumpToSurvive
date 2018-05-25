@@ -35,6 +35,8 @@ public class Mensaje {
     
        
     public void show() {
-     JOptionPane.showMessageDialog(null, this.mensaje, this.titulo,JOptionPane.PLAIN_MESSAGE);
+    String[] options = {"Inicio", "Siguiente nivel", "Reiniciar"};
+    JOptionPane.showOptionDialog(null, this.mensaje, this.titulo, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+    // JOptionPane.showConfirmDialog(null, this.mensaje, this.titulo,JOptionPane.PLAIN_MESSAGE);
     }
 }

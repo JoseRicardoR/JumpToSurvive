@@ -68,11 +68,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setLocationRelativeTo(null);
-        int i = 5;
-        if(i==5){
-             JumpToSurvive jtp = new JumpToSurvive();
-             interfaz.setVisible(false);
-        }
+        JumpToSurvive jtp = new JumpToSurvive();
+        interfaz.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
       static Interfaz interfaz = new Interfaz();

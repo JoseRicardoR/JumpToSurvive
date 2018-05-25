@@ -60,7 +60,7 @@ public class Tablero extends JPanel implements ActionListener {
         blocks.add(new Elements(300, 250, 350, 300, 920, 46, 1047, 166));//bloque hielo izquierda
         blocks.add(new Elements(455, 250, 505, 300, 920, 46, 1047, 166));//bloque hielo derecha
 
-        blocks.add(new Elements("coin.png", 300, 190, 350, 240, 0, 0, 0, 100)); // Moneda
+        blocks.add(new Elements("coin.png", 380, 180, 430, 230, 0, 0, 0, 100)); // Moneda
         blocks.add(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512)); // Meta
 
         blocks.add(new Elements("spikes.png", 250, 410, 555, 480, 0, 0, 629, 127)); // Obstaculo
@@ -92,7 +92,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         if (monedaRecogida == false) {
             Image coin = loadImage("coin.png");
-            g.drawImage(coin, 300, 190, 350, 240, 100 * this.secuencia, 0, 100 * (this.secuencia) + 100, 100, this);
+            g.drawImage(coin, 380, 180, 430, 230, 100 * this.secuencia, 0, 100 * (this.secuencia) + 100, 100, this);
         }
 
         pintar(g, blocks);
