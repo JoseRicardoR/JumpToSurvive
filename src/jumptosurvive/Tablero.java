@@ -199,7 +199,13 @@ public class Tablero extends JPanel implements ActionListener {
                     case "flag.png": {
                         System.out.println("Llegue a la meta");
                         this.cronometro.pararCronometro();
-                        Mensaje mensaje = new Mensaje("Siguiente nivel", "Felicidades");
+                        String puntuacion[] = this.cronometro.getTexto().split(":");
+                        int puntua = 100 - Integer.parseInt(puntuacion[1]);
+                        if(this.monedaRecogida == true){
+                            puntua = puntua +10;
+                        }
+                        //String puntuacion = "10";
+                        Mensaje mensaje = new Mensaje("Puntuacion: " +puntua, "Felicidades");
                         mensaje.show();
                         break;
                     }
