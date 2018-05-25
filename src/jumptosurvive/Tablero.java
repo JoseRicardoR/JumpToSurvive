@@ -84,12 +84,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         secuencia += 0.5;
 
-        if (monedaRecogida == false) {
-            Image coin = loadImage("coin.png");
-            g.drawImage(coin, 380, 180, 430, 230, 100 * (int) this.secuencia, 0, 100 * (int) (this.secuencia) + 100, 100, this);
-        }
 //-----------------------------------------------------------------------------------------------------------------------        
-
         pintar(g, blocks);
 
         g.drawString(this.cronometro.getTexto(), 350, 20);
@@ -137,6 +132,8 @@ public class Tablero extends JPanel implements ActionListener {
             if (!b.getImage().equals("coin.png")) {
                 G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
 
+            } else if (monedaRecogida == false) {
+                G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), 100 * (int) this.secuencia, b.getSy1(), 100 * (int) (this.secuencia) + 100, b.getSy2(), this);
             }
         }
     }
@@ -199,22 +196,20 @@ public class Tablero extends JPanel implements ActionListener {
                         this.blocks.remove(this.blocks.get(i));
                         this.monedaRecogida = true;
                         break;
-                    case "flag.png":
-                        {
-                            System.out.println("Llegue a la meta");
-                            this.cronometro.pararCronometro();
-                            Mensaje mensaje = new Mensaje("Siguiente nivel", "Felicidades");
-                            mensaje.show();
-                            break;
-                        }
-                    case "spikes.png":
-                        {
-                            System.out.println("Murio");
-                            this.cronometro.pararCronometro();
-                            Mensaje mensaje = new Mensaje("Game over", "Sigue Intentando");
-                            //mensaje.show();
-                            break;
-                        }
+                    case "flag.png": {
+                        System.out.println("Llegue a la meta");
+                        this.cronometro.pararCronometro();
+                        Mensaje mensaje = new Mensaje("Siguiente nivel", "Felicidades");
+                        mensaje.show();
+                        break;
+                    }
+                    case "spikes.png": {
+                        System.out.println("Murio");
+                        this.cronometro.pararCronometro();
+                        Mensaje mensaje = new Mensaje("Game over", "Sigue Intentando");
+                        //mensaje.show();
+                        break;
+                    }
                     default:
                         break;
                 }
