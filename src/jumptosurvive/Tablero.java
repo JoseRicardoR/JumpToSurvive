@@ -37,7 +37,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Cronometro cronometro;
     private boolean monedaRecogida;
     private Thread t1;
-    int velocidad;
+    int gravedad;
 
     public Tablero() {
         //Lanza un evento de tipo ActionListener cada 25 Milisegundo
@@ -66,7 +66,7 @@ public class Tablero extends JPanel implements ActionListener {
         blocks.add(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512)); // Meta
 
         blocks.add(new Elements("spikes.png", 250, 410, 555, 480, 0, 0, 629, 127)); // Obstaculo
-        velocidad = 3;
+        gravedad = 3;
 
     }
 
@@ -84,7 +84,6 @@ public class Tablero extends JPanel implements ActionListener {
             secuencia = 0;
         }
         secuencia += 0.5;
-
 //-----------------------------------------------------------------------------------------------------------------------        
         pintar(g, blocks);
 
@@ -101,8 +100,8 @@ public class Tablero extends JPanel implements ActionListener {
         pintar(g, player);
 
         //caida
-        for (int i = 0; i < velocidad; i++) {
-            mov[1] += player.getGravedad();
+        for (int i = 0; i < gravedad; i++) {
+            mov[1] += player.getVelocidad();
         }
 
     }
@@ -164,7 +163,7 @@ public class Tablero extends JPanel implements ActionListener {
 
 //            if (key == KeyEvent.VK_W && player.isCayo()) {
             if (key == KeyEvent.VK_W) {
-                player.setGravedad(-4);
+                player.setVelocidad(-10);
             }
         }
 
@@ -176,10 +175,6 @@ public class Tablero extends JPanel implements ActionListener {
                 player.setDx1(70);
                 player.setDx2(0);
 
-            }
-            if (key == KeyEvent.VK_W) {
-
-                player.setGravedad(4);
             }
         }
 
@@ -202,14 +197,13 @@ public class Tablero extends JPanel implements ActionListener {
                         this.cronometro.pararCronometro();
                         String puntuacion[] = this.cronometro.getTexto().split(":");
                         int puntua = 100 - Integer.parseInt(puntuacion[1]);
-                        if(this.monedaRecogida == true){
-                            puntua = puntua +10;
+                        if (this.monedaRecogida == true) {
+                            puntua = puntua + 10;
                         }
                         //String puntuacion = "10";
-                        Mensaje mensaje = new Mensaje("Puntuacion: " +puntua, "Felicidades");
+                        Mensaje mensaje = new Mensaje("Puntuacion: " + puntua, "Felicidades");
                         mensaje.show();
-                   
-                       
+
                         break;
                     }
                     case "spikes.png": {
@@ -223,7 +217,7 @@ public class Tablero extends JPanel implements ActionListener {
                         break;
                 }
 //----------------------------------------------------------------------------------
-                p.setGravedad(0);
+                p.setVelocidad(-1);
                 if (!chok.contains(i)) {
                     p.setCayo(true);
                     chok.add(i);
@@ -235,7 +229,7 @@ public class Tablero extends JPanel implements ActionListener {
         for (int j = 0; j < chok.size(); j++) {
             if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect())) {
                 System.out.println("No hay colision");
-                p.setGravedad(4);
+                p.setVelocidad(1);
                 p.setCayo(false);
                 chok.remove(j);
 

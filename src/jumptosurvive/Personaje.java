@@ -16,7 +16,7 @@ public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;
-    private double gravedad = 4;
+    private double velocidad = 1;
     private boolean cayo = false;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
@@ -139,12 +139,12 @@ public class Personaje extends Thread {
         this.image = image;
     }
 
-    public double getGravedad() {
-        return gravedad;
+    public double getVelocidad() {
+        return velocidad;
     }
 
-    public void setGravedad(double gravedad) {
-        this.gravedad = gravedad;
+    public void setVelocidad(double velocidad) {
+        this.velocidad = velocidad;
     }
 
     public Rectangle getBounds() {
