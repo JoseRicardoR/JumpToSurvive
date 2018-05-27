@@ -31,16 +31,6 @@ public class Personaje extends Thread {
         this.image = image;
 
     }
-
-    public void service(int[] movimiento) {
-        new Thread() {
-            @Override
-            public void run() {
-            }
-
-        };
-    }
-
     public int getDx1() {
         return dx1;
     }
