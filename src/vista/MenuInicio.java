@@ -44,6 +44,7 @@ public class MenuInicio extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jButton4.setText("Credits");
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.setFocusPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,9 +52,9 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(420, 320, 130, 40);
+        jButton4.setBounds(420, 280, 130, 40);
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\joser\\Documents\\NetBeansProjects\\JumpToSurviveTest\\ANUNCIO.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ANUNCIO.png"))); // NOI18N
         jButton2.setMaximumSize(new java.awt.Dimension(333, 609));
         jButton2.setMinimumSize(new java.awt.Dimension(336, 609));
         jButton2.setPreferredSize(new java.awt.Dimension(333, 609));
@@ -66,14 +67,14 @@ public class MenuInicio extends javax.swing.JFrame {
         jButton2.setBounds(10, 0, 190, 480);
 
         jButton3.setText("Start Game");
-        jButton3.setBorder(null);
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(420, 250, 130, 40);
+        jButton3.setBounds(420, 230, 130, 40);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondo 2.2.png"))); // NOI18N
         getContentPane().add(jLabel2);
