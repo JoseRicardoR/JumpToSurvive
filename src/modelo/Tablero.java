@@ -30,14 +30,12 @@ public class Tablero extends JPanel implements ActionListener {
     private Timer timer;
     private int[] mov;
     private double secuencia;
-    private int gravedad;
 
-    public Tablero(Personaje jugador, Cronometro cronometro, String fondo, int gravedad) {
+    public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
         this.chok = new ArrayList();
         this.cronometro = cronometro;
         this.personaje = jugador;
-        this.gravedad = gravedad;
         this.fondo = fondo;
         this.llegoMeta = false;
         this.monedaRecogida = false;
@@ -86,11 +84,8 @@ public class Tablero extends JPanel implements ActionListener {
         personaje.debugRect(g);
         pintarPersonaje(g, personaje);
         //Funcio que pinta la caida
-        for (int i = 0; i < gravedad; i++) {
+        mov[1] += personaje.getVelocidad();
 
-            mov[1] += personaje.getGravedad();
-
-        }
     }
 
 //Funcion que carga las imagenes----------------------------------------
@@ -167,8 +162,8 @@ public class Tablero extends JPanel implements ActionListener {
                 mov[0] += -4;
             }
 
-            if (key == KeyEvent.VK_W) {
-                personaje.setGravedad(-1);
+            if (key == KeyEvent.VK_W && personaje.isCayo()) {
+                personaje.setVelocidad(-1);
             }
         }
         //eventos cuando se suelta una tecla-------------------------------
@@ -180,8 +175,8 @@ public class Tablero extends JPanel implements ActionListener {
                 personaje.setDx1(70);
                 personaje.setDx2(0);
             }
-            if (key == KeyEvent.VK_W) {
-                personaje.setGravedad(1);
+            if (key == KeyEvent.VK_W && !personaje.isCayo()) {
+                personaje.setVelocidad(1);
             }
         }
 
@@ -217,7 +212,7 @@ public class Tablero extends JPanel implements ActionListener {
                         break;
                 }
 //----------------------------------------------------------------------------------
-                p.setGravedad(0);
+                p.setVelocidad(0);
 //                Rectangle rcol = playerBordes.intersection(this.blocks.get(i).getRect());
 //                if (rcol.getHeight() > 1) {
 //                    p.setGravedad(-0.5);
@@ -232,7 +227,7 @@ public class Tablero extends JPanel implements ActionListener {
         for (int j = 0; j < chok.size(); j++) {
             if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect())) {
                 //System.out.println("No hay colision");
-                p.setGravedad(1);
+                p.setVelocidad(1);
                 p.setCayo(false);
                 chok.remove(j);
             }
@@ -341,14 +336,6 @@ public class Tablero extends JPanel implements ActionListener {
 
     public void setSecuencia(double secuencia) {
         this.secuencia = secuencia;
-    }
-
-    public int getGravedad() {
-        return gravedad;
-    }
-
-    public void setGravedad(int gravedad) {
-        this.gravedad = gravedad;
     }
 
 }

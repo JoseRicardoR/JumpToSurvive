@@ -23,7 +23,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         this.timer.start();
         this.cronometro = new Cronometro();
         this.personaje = new Personaje(0, 0, 70, 70, 161, 162, 214, 209, "personaje1.png");
-        this.tablero = new Tablero(this.personaje, this.cronometro, "4.jpg", 1/*variable gravedad*/);
+        this.tablero = new Tablero(this.personaje, this.cronometro, "4.jpg");
         anadirElements();
         initUI();
     }
