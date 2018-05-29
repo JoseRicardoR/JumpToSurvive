@@ -3,7 +3,7 @@ package modelo;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Personaje extends Thread {
+public class Personaje {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;       //Imagen 
@@ -24,13 +24,19 @@ public class Personaje extends Thread {
 
     }
 
-    public void service(int[] movimiento) { //movimiento
+    public void caida(int[] movimiento) { //movimiento
         new Thread() {
             @Override
             public void run() {
+                movimiento[1] += velocidad;
             }
+        }.start();
+    }
 
-        };
+    public void salto(int[] movimiento) {
+        for (int i = 0; i < 100; i++) {
+            movimiento[1] += -1;
+        }
     }
 
     public boolean isVivo() {

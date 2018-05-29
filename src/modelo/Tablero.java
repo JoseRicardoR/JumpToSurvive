@@ -13,10 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
-//
 public class Tablero extends JPanel implements ActionListener {
 
     private ArrayList<Elements> blocks;
@@ -84,7 +81,7 @@ public class Tablero extends JPanel implements ActionListener {
         personaje.debugRect(g);
         pintarPersonaje(g, personaje);
         //Funcio que pinta la caida
-        mov[1] += personaje.getVelocidad();
+        personaje.caida(mov);
 
     }
 
@@ -138,11 +135,12 @@ public class Tablero extends JPanel implements ActionListener {
     }
 
 //controles del juego--------------------------------------------
-    private class EventosTeclado extends KeyAdapter {
+    public class EventosTeclado extends KeyAdapter {
 
         //eventos cuando se presiona una tecla-------------------------------
         @Override
         public void keyPressed(KeyEvent e) {
+
             int key = e.getKeyCode();
 
             //debug colisiones
@@ -157,13 +155,14 @@ public class Tablero extends JPanel implements ActionListener {
             }
 
             if (key == KeyEvent.VK_A) {
+                
                 personaje.setDx2(0);
                 personaje.setDx1(70);
                 mov[0] += -4;
             }
 
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
-                personaje.setVelocidad(-1);
+                personaje.setVelocidad(-100);
             }
         }
         //eventos cuando se suelta una tecla-------------------------------
@@ -180,9 +179,8 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
 
-    }
+    } //Funcion que chuqeuea colisiones---------------------------------------------------
 
-//Funcion que chuqeuea colisiones---------------------------------------------------
     public void checkCollisions(Personaje p, int[] mov) {
         Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
         for (int i = 0; i < this.blocks.size(); i++) {
@@ -212,12 +210,13 @@ public class Tablero extends JPanel implements ActionListener {
                         break;
                 }
 //----------------------------------------------------------------------------------
-                p.setVelocidad(0);
+
 //                Rectangle rcol = playerBordes.intersection(this.blocks.get(i).getRect());
 //                if (rcol.getHeight() > 1) {
 //                    p.setGravedad(-0.5);
 //                }
                 if (!chok.contains(i)) {
+                    p.setVelocidad(0);
                     p.setCayo(true);
                     chok.add(i);
                 }
