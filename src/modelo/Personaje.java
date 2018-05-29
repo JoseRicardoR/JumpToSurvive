@@ -1,15 +1,13 @@
-
 package modelo;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-
 public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;       //Imagen 
-    private double gravedad = 1;        
+    private double gravedad = 1;
     private boolean cayo = false;
     private boolean vivo = true;
 
@@ -42,7 +40,7 @@ public class Personaje extends Thread {
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
     }
-    
+
     public int getDx1() {
         return dx1;
     }
@@ -178,5 +176,5 @@ public class Personaje extends Thread {
     public void setCayo(boolean cayo) {
         this.cayo = cayo;
     }
-    
+
 }

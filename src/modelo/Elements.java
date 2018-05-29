@@ -1,9 +1,7 @@
-
 package modelo;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
 
 public class Elements {
 
@@ -64,11 +62,11 @@ public class Elements {
     public void setSx1(int sx1) {
         this.sx1 = sx1;
     }
-    
-    public void plusSx1(int x){
+
+    public void plusSx1(int x) {
         this.sx1 += x;
     }
-    
+
     public int getSy1() {
         return sy1;
     }
@@ -84,9 +82,9 @@ public class Elements {
     public void setSx2(int sx2) {
         this.sx2 = sx2;
     }
-    
-    public void plusSx2(int x){
-        this.sx2+= x; 
+
+    public void plusSx2(int x) {
+        this.sx2 += x;
     }
 
     public int getSy2() {

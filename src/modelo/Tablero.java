@@ -217,7 +217,11 @@ public class Tablero extends JPanel implements ActionListener {
                         break;
                 }
 //----------------------------------------------------------------------------------
-                p.setGravedad(-1);
+                p.setGravedad(0);
+//                Rectangle rcol = playerBordes.intersection(this.blocks.get(i).getRect());
+//                if (rcol.getHeight() > 1) {
+//                    p.setGravedad(-0.5);
+//                }
                 if (!chok.contains(i)) {
                     p.setCayo(true);
                     chok.add(i);
