@@ -9,7 +9,7 @@ public class Personaje extends Thread {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;       //Imagen 
-    private double gravedad = 4;        
+    private double gravedad = 1;        
     private boolean cayo = false;
     private boolean vivo = true;
 

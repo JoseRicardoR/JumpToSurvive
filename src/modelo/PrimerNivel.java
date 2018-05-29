@@ -8,7 +8,7 @@ import javax.swing.Timer;
 import vista.MenuInicio;
 import vista.MenuNiveles;
 
-public class PrimerNivel extends JFrame implements ActionListener{
+public final class PrimerNivel extends JFrame implements ActionListener{
     private JFrame frame;
     private Tablero tablero;
      private Timer timer;
@@ -23,7 +23,7 @@ public class PrimerNivel extends JFrame implements ActionListener{
         this.timer.start();
         this.cronometro = new Cronometro();
         this.personaje = new Personaje(0, 0, 70, 70, 161, 162, 214, 209, "personaje1.png");
-        this.tablero = new Tablero(this.personaje, this.cronometro, "4.jpg", 1 );
+        this.tablero = new Tablero(this.personaje, this.cronometro, "4.jpg", 4/*variable gravedad*/ );
         anadirElements();
         initUI();
     }

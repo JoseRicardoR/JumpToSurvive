@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.awt.Graphics;
@@ -19,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 //
 public class Tablero extends JPanel implements ActionListener {
+
     private ArrayList<Elements> blocks;
     private ArrayList<Integer> chok;
     private Personaje personaje;
@@ -32,7 +32,7 @@ public class Tablero extends JPanel implements ActionListener {
     private double secuencia;
     private int gravedad;
 
-    public Tablero(Personaje jugador, Cronometro cronometro, String fondo, int gravedad){
+    public Tablero(Personaje jugador, Cronometro cronometro, String fondo, int gravedad) {
         this.blocks = new ArrayList();
         this.chok = new ArrayList();
         this.cronometro = cronometro;
@@ -40,23 +40,24 @@ public class Tablero extends JPanel implements ActionListener {
         this.gravedad = gravedad;
         this.fondo = fondo;
         this.llegoMeta = false;
-        this.monedaRecogida= false;
-        this.timer = new Timer(25,this);
-        this.mov = new int[] {0, 0};
+        this.monedaRecogida = false;
+        this.timer = new Timer(25, this);
+        this.mov = new int[]{0, 0};
         this.timer.start();
         addKeyListener(new EventosTeclado());
         setFocusable(true);
     }
 
 //Añadir elementos al arrayList blocks-----------------------------------
-    public void addElements( Elements e){
+    public void addElements(Elements e) {
         this.blocks.add(e);
     }
 //Remover elementos al arrayList blocks-----------------------------------
-    public void removeElements( Elements e){
+
+    public void removeElements(Elements e) {
         this.blocks.remove(e);
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
 //SetUp---------------------------------------------
@@ -70,21 +71,25 @@ public class Tablero extends JPanel implements ActionListener {
         pintarElements(g, blocks); // Pinta el arrayList blocks
 
         g.drawString(this.cronometro.getTexto(), 350, 20); //Pinta el cronometro
-        
+
         //Funcion que pinta los elementos con secuencia
-        if (secuencia == 9) { secuencia = 0; }
+        if (secuencia == 9) {
+            secuencia = 0;
+        }
         secuencia += 0.5;
-        pintarMoneda(g); 
+        pintarMoneda(g);
 
         pintarBordes(g);//funcionPintarBordesDe colision()
 
         //Funcion pinta movimiento del personaje
-         g.translate(mov[0], mov[1]);
-         personaje.debugRect(g);
-         pintarPersonaje(g, personaje);
-         //Funcio que pinta la caida
+        g.translate(mov[0], mov[1]);
+        personaje.debugRect(g);
+        pintarPersonaje(g, personaje);
+        //Funcio que pinta la caida
         for (int i = 0; i < gravedad; i++) {
+
             mov[1] += personaje.getGravedad();
+
         }
     }
 
@@ -100,12 +105,11 @@ public class Tablero extends JPanel implements ActionListener {
         Image p = loadImage(P.getImage());
         G.drawImage(p, P.getDx1(), P.getDy1(), P.getDx2(), P.getDy2(), P.getSx1(), P.getSy1(), P.getSx2(), P.getSy2(), this);
     }
-    
+
 //Funcion que pinta el movimiento-------------------------
-    
 //Funcion qeu pnta los bordes de colision----------------------------------------
-    public void pintarBordes(Graphics g ){
-        if(this.silhouette){
+    public void pintarBordes(Graphics g) {
+        if (this.silhouette) {
             for (int i = 0; i < this.blocks.size(); i++) {
                 blocks.get(i).debugRect(g);
             }
@@ -123,25 +127,25 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
     }
-    
+
 //Funcion qeu pinta los elementos secuenciales-----------------------------------------------------
-    public void pintarMoneda(Graphics g){
-        if(monedaRecogida == false){
-        Image coin = loadImage("coin.png");
-        Elements moneda = null;
-        for (int i = 0; i < this.blocks.size(); i++) {
-            if(this.blocks.get(i).getImage().equals("coin.png")){
-                moneda= this.blocks.get(i);
+    public void pintarMoneda(Graphics g) {
+        if (monedaRecogida == false) {
+            Image coin = loadImage("coin.png");
+            Elements moneda = null;
+            for (int i = 0; i < this.blocks.size(); i++) {
+                if (this.blocks.get(i).getImage().equals("coin.png")) {
+                    moneda = this.blocks.get(i);
+                }
             }
-        }
-        g.drawImage(coin, moneda.getDx1(), moneda.getDy1(), moneda.getDx2(), moneda.getDy2(),100 * (int)secuencia, moneda.getSy1(), 100 * (int)secuencia + 100, moneda.getSy2(), this);
+            g.drawImage(coin, moneda.getDx1(), moneda.getDy1(), moneda.getDx2(), moneda.getDy2(), 100 * (int) secuencia, moneda.getSy1(), 100 * (int) secuencia + 100, moneda.getSy2(), this);
         }
     }
-    
+
 //controles del juego--------------------------------------------
-    private class EventosTeclado extends KeyAdapter{
-        
-    //eventos cuando se presiona una tecla-------------------------------
+    private class EventosTeclado extends KeyAdapter {
+
+        //eventos cuando se presiona una tecla-------------------------------
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
@@ -150,7 +154,7 @@ public class Tablero extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_F10) {
                 silhouette = true;
             }
-        //  Movimiento del personaje-------------------------------------------------------------------------------------------
+            //  Movimiento del personaje-------------------------------------------------------------------------------------------
             if (key == KeyEvent.VK_D) {
                 personaje.setDx1(0);
                 personaje.setDx2(70);
@@ -162,12 +166,13 @@ public class Tablero extends JPanel implements ActionListener {
                 personaje.setDx1(70);
                 mov[0] += -4;
             }
-            
+
             if (key == KeyEvent.VK_W) {
-                personaje.setGravedad(-4);
+                personaje.setGravedad(-1);
             }
         }
-    //eventos cuando se suelta una tecla-------------------------------
+        //eventos cuando se suelta una tecla-------------------------------
+
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
@@ -176,15 +181,14 @@ public class Tablero extends JPanel implements ActionListener {
                 personaje.setDx2(0);
             }
             if (key == KeyEvent.VK_W) {
-                personaje.setGravedad(4);
+                personaje.setGravedad(1);
             }
         }
 
     }
 
-    
 //Funcion que chuqeuea colisiones---------------------------------------------------
-    public void checkCollisions(Personaje p, int[] mov) { 
+    public void checkCollisions(Personaje p, int[] mov) {
         Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
         for (int i = 0; i < this.blocks.size(); i++) {
             if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
@@ -192,7 +196,7 @@ public class Tablero extends JPanel implements ActionListener {
 //-----------------Colisiones especiales-----------------------------------------------------------------
                 switch (this.blocks.get(i).getImage()) {
                     case "coin.png":
-                        this.setMonedaRecogida(true); 
+                        this.setMonedaRecogida(true);
                         System.out.println("Moneda recolectada");
                         removeElements(this.blocks.get(i));
                         break;
@@ -213,7 +217,7 @@ public class Tablero extends JPanel implements ActionListener {
                         break;
                 }
 //----------------------------------------------------------------------------------
-                p.setGravedad(0);
+                p.setGravedad(-1);
                 if (!chok.contains(i)) {
                     p.setCayo(true);
                     chok.add(i);
@@ -224,14 +228,13 @@ public class Tablero extends JPanel implements ActionListener {
         for (int j = 0; j < chok.size(); j++) {
             if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect())) {
                 //System.out.println("No hay colision");
-                p.setGravedad(4);
+                p.setGravedad(1);
                 p.setCayo(false);
                 chok.remove(j);
             }
         }
     }
-     
-     
+
 //Todas las funciones en conjunto-------------------------------------
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -239,7 +242,6 @@ public class Tablero extends JPanel implements ActionListener {
         checkCollisions(this.personaje, mov); //Se ejecuta la funcion de verificar colisiones
     }
 
-    
 //Getters y setters de los atributos de tablero------------------------------------------------
     public ArrayList<Elements> getBlocks() {
         return blocks;
