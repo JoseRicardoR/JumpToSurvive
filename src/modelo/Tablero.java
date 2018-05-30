@@ -196,13 +196,14 @@ public class Tablero extends JPanel implements ActionListener {
                     case "flag.png": {
                         System.out.println("Lleguo a la meta");
                         this.setLlegoMeta(true);
-                        removeElements(this.blocks.get(i));
+                        this.blocks.get(i).setRect(null);
                         this.cronometro.pararCronometro();
                         break;
                     }
                     case "spikes.png": {
-                        this.personaje.setVivo(false);
                         System.out.println("Murio");
+                        this.blocks.get(i).setRect(null);
+                        this.personaje.setVivo(false);
                         this.cronometro.pararCronometro();
                         break;
                     }
