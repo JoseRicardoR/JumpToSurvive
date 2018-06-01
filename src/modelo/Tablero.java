@@ -58,6 +58,7 @@ public class Tablero extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
+
 //SetUp---------------------------------------------
         super.paintComponent(g);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); // Fuente de letra y tamaño para todo el tablero
@@ -86,7 +87,7 @@ public class Tablero extends JPanel implements ActionListener {
         //Funcio que pinta la caida
 
         if (personaje.isSaltando()) {
-            int altura_salto = 100;
+            int altura_salto = 25;
             contasalto += 1;
             if (contasalto > altura_salto) {
                 personaje.setSaltando(false);
@@ -162,34 +163,37 @@ public class Tablero extends JPanel implements ActionListener {
             //  Movimiento del personaje-------------------------------------------------------------------------------------------
             if (key == KeyEvent.VK_D) {
                 personaje.setDx1(0);
-                personaje.setDx2(70);
+                personaje.setDx2(50);
                 mov[0] += 4;
             }
 
             if (key == KeyEvent.VK_A) {
 
                 personaje.setDx2(0);
-                personaje.setDx1(70);
+                personaje.setDx1(50);
                 mov[0] += -4;
             }
 
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
+                personaje.setVelocidad(-5);
                 personaje.setSaltando(true);
-                personaje.setVelocidad(-1);
+//                personaje.setCayo(false);
+
             }
         }
-        //eventos cuando se suelta una tecla-------------------------------
 
+        //eventos cuando se suelta una tecla-------------------------------
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_A) {
-                personaje.setDx1(70);
+                personaje.setDx1(50);
                 personaje.setDx2(0);
             }
             if (key == KeyEvent.VK_W && !personaje.isCayo()) {
-                personaje.setVelocidad(1);
+                personaje.setVelocidad(5);
             }
+
         }
 
     } //Funcion que chuqeuea colisiones---------------------------------------------------
@@ -240,7 +244,7 @@ public class Tablero extends JPanel implements ActionListener {
         for (int j = 0; j < chok.size(); j++) {
             if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
                 //System.out.println("No hay colision");
-                p.setVelocidad(1);
+                p.setVelocidad(5);
                 p.setCayo(false);
                 chok.remove(j);
             }
@@ -250,7 +254,7 @@ public class Tablero extends JPanel implements ActionListener {
 //Todas las funciones en conjunto-------------------------------------
     @Override
     public void actionPerformed(ActionEvent ae) {
-        repaint(); //Funcion que ejecuta la funcion de pintar repetidamente
+        repaint(); //Funcion que ejecuta la funcion de pintar repetidamente m
         checkCollisions(this.personaje, mov); //Se ejecuta la funcion de verificar colisiones
     }
 
