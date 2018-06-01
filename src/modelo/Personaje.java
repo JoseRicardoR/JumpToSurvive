@@ -191,6 +191,4 @@ public class Personaje {
     public void setSaltando(boolean saltando) {
         this.saltando = saltando;
     }
-    
-
 }
