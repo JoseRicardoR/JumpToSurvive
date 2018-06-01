@@ -7,7 +7,7 @@ public class Personaje {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;       //Imagen 
-    private double velocidad = 1;
+    private double velocidad = 5;
     private boolean cayo = false;
     private boolean vivo = true;
     private boolean saltando = false;
@@ -165,11 +165,11 @@ public class Personaje {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(0, dy1, 70, dy2 - dy1);
+        return new Rectangle(0, dy1, 50, dy2 - dy1);
     }
 
     public Rectangle getBounds(int[] mov) {
-        return new Rectangle(mov[0], dy1 + mov[1], 70, dy2 - dy1);
+        return new Rectangle(mov[0], dy1 + mov[1], 50, dy2 - dy1);
     }
 
     public void debugRect(Graphics g) {
