@@ -55,9 +55,7 @@ public class MenuInicio extends javax.swing.JFrame {
         jButton4.setBounds(420, 280, 130, 40);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ANUNCIO.png"))); // NOI18N
-        jButton2.setMaximumSize(new java.awt.Dimension(333, 609));
         jButton2.setMinimumSize(new java.awt.Dimension(336, 609));
-        jButton2.setPreferredSize(new java.awt.Dimension(333, 609));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
