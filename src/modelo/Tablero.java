@@ -213,6 +213,7 @@ public class Tablero extends JPanel implements ActionListener {
                     case "spikes.png": {
                         System.out.println("Murio");
                         this.blocks.get(i).setRect(null);
+ //                       playerBordes = null;
                         this.personaje.setVivo(false);
                         this.cronometro.pararCronometro();
                         break;

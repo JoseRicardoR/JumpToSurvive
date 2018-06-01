@@ -28,8 +28,8 @@ public class Mensaje {
     }
 
     public int show() {
-        String[] options = {"Inicio", "Reiniciar", "Siguiente nivel"};
-        int x = JOptionPane.showOptionDialog(null, this.mensaje, this.titulo, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        String[] options = { "Inicio", "Reiniciar", "Siguiente nivel"};
+        int x = JOptionPane.showOptionDialog(null, this.mensaje, this.titulo, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
         switch (x) {
             case 0:
                 System.out.println("Volver a Inicio");
@@ -39,6 +39,22 @@ public class Mensaje {
                 break;
             case 2:
                 System.out.println("Siguiente nivel");
+                break;
+            default:
+                break;
+        }
+        return x;
+    }
+    
+    public int show2() {
+        String[] options = {"Inicio", "Reiniciar"};
+        int x = JOptionPane.showOptionDialog(null, this.mensaje, this.titulo, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+        switch (x) {
+            case 0:
+                System.out.println("Volver a Inicio");
+                break;
+            case 1:
+                System.out.println("Riniciar nivel");
                 break;
             default:
                 break;

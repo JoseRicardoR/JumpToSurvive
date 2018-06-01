@@ -132,7 +132,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         if (!this.tablero.getPersonaje().isVivo()) {
             message.setTitulo("Game Over");
             message.setMensaje("Sigue intentando");
-            op = message.show();
+            op = message.show2();
             this.tablero.getPersonaje().setVivo(true);
         }
         return op;
@@ -141,12 +141,14 @@ public final class PrimerNivel extends JFrame implements ActionListener {
     public void options(int o) {
         switch (o) {
             case 0:
+                //Volver a  inicios
                 this.dispose();
                 MenuInicio menuI = new MenuInicio();
                 menuI.setVisible(true);
                 menuI.setLocationRelativeTo(null);
                 break;
             case 1:
+                //Reiniciar
                 this.dispose();
                 MenuInicio menuRM = new MenuInicio();
                 menuRM.setVisible(false);
@@ -157,6 +159,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
                 System.out.println("......Inicia Nivel Uno.......");
                 break;
             case 2:
+                //Siguiente nivel
                 this.dispose();
                 MenuInicio menuSM = new MenuInicio();
                 menuSM.setVisible(false);
