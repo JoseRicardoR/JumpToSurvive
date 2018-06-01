@@ -91,11 +91,10 @@ public class Tablero extends JPanel implements ActionListener {
             contasalto += 1;
             if (contasalto > altura_salto) {
                 contasalto = 0;
-                if (personaje.isCayo()) {
-                    personaje.setSaltando(false);
-                }
+                personaje.setSaltando(false);
             }
         }
+
         personaje.caida(mov);
 
     }
@@ -175,91 +174,75 @@ public class Tablero extends JPanel implements ActionListener {
                 personaje.setDx1(50);
                 mov[0] += -4;
             }
-
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
                 personaje.setVelocidad(-5);
                 personaje.setSaltando(true);
-//                personaje.setCayo(false);
+                personaje.setCayo(false);
 
-            }
-        }
-
-        //eventos cuando se suelta una tecla-------------------------------
-        @Override
-        public void keyReleased(KeyEvent e) {
-            int key = e.getKeyCode();
-            if (key == KeyEvent.VK_A) {
-                personaje.setDx1(50);
-                personaje.setDx2(0);
-            }
-            if (key == KeyEvent.VK_W && !personaje.isCayo()) {
-                personaje.setVelocidad(5);
-            }
-
-        }
-
-    } //Funcion que chuqeuea colisiones---------------------------------------------------
-
-    public void checkCollisions(Personaje p, int[] mov) {
-        Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
-        for (int i = 0; i < this.blocks.size(); i++) {
-            if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
-                //System.out.println("Hay colision con " + i);
-//-----------------Colisiones especiales-----------------------------------------------------------------
-                switch (this.blocks.get(i).getImage()) {
-                    case "coin.png":
-                        this.setMonedaRecogida(true);
-                        System.out.println("Moneda recolectada");
-                        removeElements(this.blocks.get(i));
-                        break;
-                    case "flag.png": {
-                        System.out.println("Lleguo a la meta");
-                        this.setLlegoMeta(true);
-                        this.blocks.get(i).setRect(null);
-                        this.cronometro.pararCronometro();
-                        break;
-                    }
-                    case "spikes.png": {
-                        System.out.println("Murio");
-                        this.blocks.get(i).setRect(null);
- //                       playerBordes = null;
-                        this.personaje.setVivo(false);
-                        this.cronometro.pararCronometro();
-                        break;
-                    }
-                    default:
-                        break;
-                }
-//----------------------------------------------------------------------------------
-
-//                Rectangle rcol = playerBordes.intersection(this.blocks.get(i).getRect());
-//                if (rcol.getHeight() > 1) {
-//                    p.setGravedad(-0.5);
-//                }
-                if (!chok.contains(i)) {
-                    p.setVelocidad(0);
-                    p.setCayo(true);
-
-                    chok.add(i);
-                }
-            }
-        }
-
-        for (int j = 0; j < chok.size(); j++) {
-            if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
-                //System.out.println("No hay colision");
-                p.setVelocidad(5);
-                p.setCayo(false);
-                chok.remove(j);
             }
         }
     }
 
-//Todas las funciones en conjunto-------------------------------------
+    //Todas las funciones en conjunto-------------------------------------
     @Override
     public void actionPerformed(ActionEvent ae) {
         repaint(); //Funcion que ejecuta la funcion de pintar repetidamente m
         checkCollisions(this.personaje, mov); //Se ejecuta la funcion de verificar colisiones
+    }
+
+//Funcion que chuqeuea colisiones---------------------------------------------------
+    public void checkCollisions(Personaje p, int[] mov) {
+        try {
+            Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
+            for (int i = 0; i < this.blocks.size(); i++) {
+                if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
+                    //System.out.println("Hay colision con " + i);
+//-----------------Colisiones especiales-----------------------------------------------------------------
+                    switch (this.blocks.get(i).getImage()) {
+                        case "coin.png":
+                            this.setMonedaRecogida(true);
+                            System.out.println("Moneda recolectada");
+                            removeElements(this.blocks.get(i));
+                            break;
+                        case "flag.png": {
+                            System.out.println("Lleguo a la meta");
+                            this.setLlegoMeta(true);
+                            this.blocks.get(i).setRect(null);
+                            this.cronometro.pararCronometro();
+                            break;
+                        }
+                        case "spikes.png": {
+                            System.out.println("Murio");
+                            this.blocks.get(i).setRect(null);
+                            //                       playerBordes = null;
+                            this.personaje.setVivo(false);
+                            this.cronometro.pararCronometro();
+                            break;
+                        }
+                        default:
+                            break;
+                    }
+//----------------------------------------------------------------------------------
+                    if (!chok.contains(i)) {
+                        p.setVelocidad(0);
+                        p.setCayo(true);
+                        chok.add(i);
+                    }
+                }
+            }
+
+            for (int j = 0; j < chok.size(); j++) {
+                if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
+                    //System.out.println("No hay colision");
+                    p.setVelocidad(5);
+                    p.setCayo(false);
+                    chok.remove(j);
+                }
+            }
+
+        } catch (Exception e) {
+        }
+
     }
 
 //Getters y setters de los atributos de tablero------------------------------------------------
