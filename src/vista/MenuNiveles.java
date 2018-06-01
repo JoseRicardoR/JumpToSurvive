@@ -25,7 +25,8 @@ public class MenuNiveles extends javax.swing.JFrame{
         this.setResizable(false);
         this.nivelUno = new PrimerNivel(this);
         this.nivelUno.setVisible(false);
-        this.nivelDos = new SegundoNivel();
+        this.nivelDos = new SegundoNivel(this);
+        this.nivelDos.setVisible(false);
         this.nivelTres = new TercerNivel();
     }
 
@@ -71,6 +72,11 @@ public class MenuNiveles extends javax.swing.JFrame{
         jButton2.setBorderPainted(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(310, 190, 120, 100);
 
@@ -94,6 +100,13 @@ public class MenuNiveles extends javax.swing.JFrame{
         System.out.println("...Inicia Nivel Uno...");
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.nivelDos.setVisible(true);
+        this.nivelDos.getCronometro().iniciarCronometro();
+        System.out.println("........Inicia nivel Dos.........");
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
