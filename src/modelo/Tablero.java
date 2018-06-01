@@ -88,11 +88,13 @@ public class Tablero extends JPanel implements ActionListener {
 
         if (personaje.isSaltando()) {
             int altura_salto = 25;
-            contasalto += 1;
+            personaje.plusVelocidad(1);
             if (contasalto > altura_salto) {
                 contasalto = 0;
                 personaje.setSaltando(false);
             }
+            contasalto += 1;
+
         }
 
         personaje.caida(mov);

@@ -160,8 +160,12 @@ public class Personaje {
         return velocidad;
     }
 
-    public void setVelocidad(double gravedad) {
-        this.velocidad = gravedad;
+    public void setVelocidad(double velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public void plusVelocidad(double velocidad) {
+        this.velocidad += velocidad;
     }
 
     public Rectangle getBounds() {
