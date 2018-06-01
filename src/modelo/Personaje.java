@@ -25,7 +25,7 @@ public class Personaje {
 
     }
 
-    public void caida(int[] movimiento) { //movimiento
+    public synchronized void caida(int[] movimiento) { //movimiento
         new Thread() {
             @Override
             public void run() {
