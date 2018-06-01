@@ -192,53 +192,57 @@ public class Tablero extends JPanel implements ActionListener {
 
 //Funcion que chuqeuea colisiones---------------------------------------------------
     public void checkCollisions(Personaje p, int[] mov) {
-        Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
-        for (int i = 0; i < this.blocks.size(); i++) {
-            if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
-                //System.out.println("Hay colision con " + i);
+        try {
+            Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
+            for (int i = 0; i < this.blocks.size(); i++) {
+                if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
+                    //System.out.println("Hay colision con " + i);
 //-----------------Colisiones especiales-----------------------------------------------------------------
-                switch (this.blocks.get(i).getImage()) {
-                    case "coin.png":
-                        this.setMonedaRecogida(true);
-                        System.out.println("Moneda recolectada");
-                        removeElements(this.blocks.get(i));
-                        break;
-                    case "flag.png": {
-                        System.out.println("Lleguo a la meta");
-                        this.setLlegoMeta(true);
-                        this.blocks.get(i).setRect(null);
-                        this.cronometro.pararCronometro();
-                        break;
+                    switch (this.blocks.get(i).getImage()) {
+                        case "coin.png":
+                            this.setMonedaRecogida(true);
+                            System.out.println("Moneda recolectada");
+                            removeElements(this.blocks.get(i));
+                            break;
+                        case "flag.png": {
+                            System.out.println("Lleguo a la meta");
+                            this.setLlegoMeta(true);
+                            this.blocks.get(i).setRect(null);
+                            this.cronometro.pararCronometro();
+                            break;
+                        }
+                        case "spikes.png": {
+                            System.out.println("Murio");
+                            this.blocks.get(i).setRect(null);
+                            //                       playerBordes = null;
+                            this.personaje.setVivo(false);
+                            this.cronometro.pararCronometro();
+                            break;
+                        }
+                        default:
+                            break;
                     }
-                    case "spikes.png": {
-                        System.out.println("Murio");
-                        this.blocks.get(i).setRect(null);
- //                       playerBordes = null;
-                        this.personaje.setVivo(false);
-                        this.cronometro.pararCronometro();
-                        break;
-                    }
-                    default:
-                        break;
-                }
 //----------------------------------------------------------------------------------
-                if (!chok.contains(i)) {
-                    p.setVelocidad(0);
-                    p.setCayo(true);
-
-                    chok.add(i);
+                    if (!chok.contains(i)) {
+                        p.setVelocidad(0);
+                        p.setCayo(true);
+                        chok.add(i);
+                    }
                 }
             }
+
+            for (int j = 0; j < chok.size(); j++) {
+                if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
+                    //System.out.println("No hay colision");
+                    p.setVelocidad(5);
+                    p.setCayo(false);
+                    chok.remove(j);
+                }
+            }
+
+        } catch (Exception e) {
         }
 
-        for (int j = 0; j < chok.size(); j++) {
-            if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
-                //System.out.println("No hay colision");
-                p.setVelocidad(5);
-                p.setCayo(false);
-                chok.remove(j);
-            }
-        }
     }
 
 //Getters y setters de los atributos de tablero------------------------------------------------
