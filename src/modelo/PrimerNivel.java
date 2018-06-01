@@ -125,14 +125,14 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         }
         return op;
     }
-    
-    public int gameOver(){
-        int op= 100;
+
+    public int gameOver() {
+        int op = 100;
         Mensaje message = new Mensaje(null, null);
-        if(!this.tablero.getPersonaje().isVivo()){
+        if (!this.tablero.getPersonaje().isVivo()) {
             message.setTitulo("Game Over");
             message.setMensaje("Sigue intentando");
-            op= message.show();
+            op = message.show();
             this.tablero.getPersonaje().setVivo(true);
         }
         return op;

@@ -10,6 +10,7 @@ public class Personaje {
     private double velocidad = 1;
     private boolean cayo = false;
     private boolean vivo = true;
+    private boolean saltando = false;
 
     public Personaje(int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, String image) {
         this.dx1 = dx1;
@@ -182,5 +183,14 @@ public class Personaje {
     public void setCayo(boolean cayo) {
         this.cayo = cayo;
     }
+
+    public boolean isSaltando() {
+        return saltando;
+    }
+
+    public void setSaltando(boolean saltando) {
+        this.saltando = saltando;
+    }
+    
 
 }

@@ -27,6 +27,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Timer timer;
     private int[] mov;
     private double secuencia;
+    private int contasalto;
 
     public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
@@ -41,6 +42,8 @@ public class Tablero extends JPanel implements ActionListener {
         this.timer.start();
         addKeyListener(new EventosTeclado());
         setFocusable(true);
+        this.contasalto = 0;
+
     }
 
 //Añadir elementos al arrayList blocks-----------------------------------
@@ -81,6 +84,15 @@ public class Tablero extends JPanel implements ActionListener {
         personaje.debugRect(g);
         pintarPersonaje(g, personaje);
         //Funcio que pinta la caida
+
+        if (personaje.isSaltando()) {
+            int altura_salto = 100;
+            contasalto += 1;
+            if (contasalto > altura_salto) {
+                personaje.setSaltando(false);
+                contasalto = 0;
+            }
+        }
         personaje.caida(mov);
 
     }
@@ -155,14 +167,15 @@ public class Tablero extends JPanel implements ActionListener {
             }
 
             if (key == KeyEvent.VK_A) {
-                
+
                 personaje.setDx2(0);
                 personaje.setDx1(70);
                 mov[0] += -4;
             }
 
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
-                personaje.setVelocidad(-100);
+                personaje.setSaltando(true);
+                personaje.setVelocidad(-1);
             }
         }
         //eventos cuando se suelta una tecla-------------------------------
@@ -225,7 +238,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
         for (int j = 0; j < chok.size(); j++) {
-            if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect())) {
+            if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
                 //System.out.println("No hay colision");
                 p.setVelocidad(1);
                 p.setCayo(false);
