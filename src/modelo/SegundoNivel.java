@@ -28,14 +28,16 @@ private JFrame frame;
     }
 
     public void anadirElements() {
-        this.tablero.addElements(new Elements("plataforma1.png", -10, 200, 210, 320, 466, 81, 720, 335)); //Bloqeu inferior izquierdo
-        this.tablero.addElements(new Elements("plataforma1.png", 555, 400, 850, 605, 466, 81, 720, 335)); // bloque inferior derecho
-        this.tablero.addElements(new Elements("plataforma1.png", 555, 325, 850, 525, 466, 81, 720, 335)); // bloque superior derecho
-        this.tablero.addElements(new Elements("plataforma1.png", 300, 250, 350, 300, 920, 46, 1047, 166)); //Bloque de hielo izquierdo
-        this.tablero.addElements(new Elements("plataforma1.png", 455, 250, 505, 300, 920, 46, 1047, 166));  // bloqeu de hielo derecho
-        this.tablero.addElements(new Elements("coin.png", 380, 180, 430, 230, 0, 0, 0, 100)); // moneda
-        this.tablero.addElements(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512));// meta
-        this.tablero.addElements(new Elements("spikes.png", 0, 410, 555, 480, 0, 0, 629, 127));// obstaculo
+        this.tablero.addElements(new Elements("plataforma1.png", -10, 80, 310, 200, 466, 81, 720, 250)); //Bloqeu superior izquierdo
+        this.tablero.addElements(new Elements("plataforma1.png", -10, 400, 310, 600, 466, 81, 720, 335)); //Bloqeu inferior izquierdo
+        this.tablero.addElements(new Elements("plataforma1.png", 650, 200, 810, 320, 466, 81, 720, 335)); //Bloqeu derecha
+        this.tablero.addElements(new Elements("plataforma1.png", 410, 130, 460, 180, 920, 46, 1047, 166));  // bloqeu de hielo arriba
+        this.tablero.addElements(new Elements("plataforma1.png", 550, 230, 600, 280, 920, 46, 1047, 166));  // bloqeu de hielo medio
+        this.tablero.addElements(new Elements("plataforma1.png", 410, 330, 460, 380, 920, 46, 1047, 166));  // bloqeu de hielo abajo
+        this.tablero.addElements(new Elements("coin.png", 720, 120, 770, 170, 0, 0, 0, 100)); // moneda
+        this.tablero.addElements(new Elements("flag.png", 70, 330, 140, 400, 0, 0, 512, 512));// meta
+        this.tablero.addElements(new Elements("spikes.png", 310, 420, 630, 480, 0, 0, 629, 127));// obstaculo
+        this.tablero.addElements(new Elements("spikes.png", 630, 420, 950, 480, 0, 0, 629, 127));// obstaculo
     }
 
     private void initUI() { // Marco basico del Escenario 
