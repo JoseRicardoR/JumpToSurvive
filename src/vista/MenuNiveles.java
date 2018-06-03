@@ -57,6 +57,7 @@ public class MenuNiveles extends javax.swing.JFrame{
         getContentPane().add(jLabel1);
         jLabel1.setBounds(270, 40, 190, 50);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 1 M.png"))); // NOI18N
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -67,8 +68,9 @@ public class MenuNiveles extends javax.swing.JFrame{
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(50, 190, 120, 100);
+        jButton1.setBounds(80, 180, 120, 100);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 2_opt (1).png"))); // NOI18N
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setBorderPainted(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -79,8 +81,9 @@ public class MenuNiveles extends javax.swing.JFrame{
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(310, 190, 120, 100);
+        jButton2.setBounds(300, 180, 120, 103);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 3_opt.png"))); // NOI18N
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setBorderPainted(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -91,7 +94,7 @@ public class MenuNiveles extends javax.swing.JFrame{
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(540, 190, 120, 100);
+        jButton3.setBounds(510, 180, 120, 105);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/background_1.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
