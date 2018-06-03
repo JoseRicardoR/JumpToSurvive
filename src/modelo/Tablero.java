@@ -77,7 +77,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         secuencia += 0.5;
         pintarMoneda(g);
-
+       
         pintarBordes(g);//funcionPintarBordesDe colision()
 
         //Funcion pinta movimiento del personaje
@@ -117,7 +117,9 @@ public class Tablero extends JPanel implements ActionListener {
     public void pintarBordes(Graphics g) {
         if (this.silhouette) {
             for (int i = 0; i < this.blocks.size(); i++) {
+                if(this.blocks.get(i).getRect() != null){
                 blocks.get(i).debugRect(g);
+                }
             }
         }
     }
@@ -129,7 +131,7 @@ public class Tablero extends JPanel implements ActionListener {
             Elements b = iterator.next();
             Image p = loadImage(b.getImage());
             if (!b.getImage().equals("coin.png")) {
-                G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
+                 G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
             }
         }
     }
@@ -146,7 +148,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
             g.drawImage(coin, moneda.getDx1(), moneda.getDy1(), moneda.getDx2(), moneda.getDy2(), 100 * (int) secuencia, moneda.getSy1(), 100 * (int) secuencia + 100, moneda.getSy2(), this);
         }
-    }
+    }  
 
 //controles del juego--------------------------------------------
     public class EventosTeclado extends KeyAdapter {
@@ -214,7 +216,6 @@ public class Tablero extends JPanel implements ActionListener {
                         case "spikes.png": {
                             System.out.println("Murio");
                             this.blocks.get(i).setRect(null);
-                            //                       playerBordes = null;
                             this.personaje.setVivo(false);
                             this.cronometro.pararCronometro();
                             break;

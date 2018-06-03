@@ -23,11 +23,11 @@ public class MenuNiveles extends javax.swing.JFrame{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
-        this.nivelUno = new PrimerNivel(this);
+        this.nivelUno = new PrimerNivel();
         this.nivelUno.setVisible(false);
-        this.nivelDos = new SegundoNivel(this);
+        this.nivelDos = new SegundoNivel();
         this.nivelDos.setVisible(false);
-        this.nivelTres = new TercerNivel(this);
+        this.nivelTres = new TercerNivel();
         this.nivelTres.setVisible(false);
     }
 
