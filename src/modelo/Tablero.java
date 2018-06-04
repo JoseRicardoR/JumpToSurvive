@@ -19,7 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Tablero extends JPanel implements ActionListener {
-    
+
     private ArrayList<Elements> blocks;
     private ArrayList<Integer> chok;
     private Personaje personaje;
@@ -32,7 +32,7 @@ public class Tablero extends JPanel implements ActionListener {
     private double secuencia;
     private int contasalto;
     private boolean A, W, S, D;
-    
+
     public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
         this.chok = new ArrayList();
@@ -47,6 +47,7 @@ public class Tablero extends JPanel implements ActionListener {
         addKeyListener(new EventosTeclado());
         setFocusable(true);
         this.contasalto = 0;
+        S = true;
     }
 
 //Añadir elementos al arrayList blocks-----------------------------------
@@ -58,7 +59,7 @@ public class Tablero extends JPanel implements ActionListener {
     public void removeElements(Elements e) {
         this.blocks.remove(e);
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
 
@@ -69,22 +70,22 @@ public class Tablero extends JPanel implements ActionListener {
 //Elementos Tablero----------------------------------
         Image background = loadImage(this.fondo);//Pinta el fondo del nivel
         g.drawImage(background, 0, 0, null);
-        
+
         pintarElements(g, blocks); // Pinta el arrayList blocks
 
         g.drawString(this.cronometro.getTexto(), 350, 20); //Pinta el cronometro
 // combinar teclas
-        if (A) {
+        if (A && S) {
             personaje.setDx2(0);
             personaje.setDx1(50);
             personaje.mov(mov, 0, -4);
         }
-        if (D) {
+        if (D && S) {
             personaje.setDx1(0);
             personaje.setDx2(50);
             personaje.mov(mov, 0, 4);
         }
-        if (W && personaje.isCayo()) {
+        if (W && personaje.isCayo() && S) {
             personaje.setVelocidad(-8);
             personaje.setSaltando(true);
             personaje.setCayo(false);
@@ -96,7 +97,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         secuencia += 0.5;
         pintarMoneda(g);
-        
+
         pintarBordes(g);//funcionPintarBordesDe colision()
 
         //Funcion pinta movimiento del personaje
@@ -116,12 +117,12 @@ public class Tablero extends JPanel implements ActionListener {
             if (contasalto > altura_salto) {
                 contasalto = 0;
                 personaje.setSaltando(false);
-                
+
             }
             contasalto += 1;
-            
+
         }
-        
+
         personaje.mov(mov, 1, personaje.getVelocidad());
     }
 
@@ -182,7 +183,7 @@ public class Tablero extends JPanel implements ActionListener {
         //eventos cuando se presiona una tecla-------------------------------
         @Override
         public void keyPressed(KeyEvent e) {
-            
+
             int key = e.getKeyCode();
 
             //debug colisiones
@@ -193,7 +194,7 @@ public class Tablero extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_D) {
                 D = true;
             }
-            
+
             if (key == KeyEvent.VK_A) {
                 A = true;
             }
@@ -201,7 +202,7 @@ public class Tablero extends JPanel implements ActionListener {
                 W = true;
             }
         }
-        
+
         @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
@@ -247,6 +248,7 @@ public class Tablero extends JPanel implements ActionListener {
                             break;
                         }
                         case "spikes.png": {
+                            S = false;
                             System.out.println("Murio");
                             this.blocks.get(i).setRect(null);
                             this.personaje.setVivo(false);
@@ -264,7 +266,7 @@ public class Tablero extends JPanel implements ActionListener {
                     }
                 }
             }
-            
+
             for (int j = 0; j < chok.size(); j++) {
                 if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
                     //System.out.println("No hay colision");
@@ -273,10 +275,10 @@ public class Tablero extends JPanel implements ActionListener {
                     chok.remove(j);
                 }
             }
-            
+
         } catch (Exception e) {
         }
-        
+
     }
 
 //sonido de moneda recolectadad--------------------------------------------
@@ -287,7 +289,7 @@ public class Tablero extends JPanel implements ActionListener {
             AudioClip ac = Applet.newAudioClip(url);
             ac.play();
         } catch (MalformedURLException ex) {
-            
+
         }
     }
 
@@ -295,97 +297,97 @@ public class Tablero extends JPanel implements ActionListener {
     public ArrayList<Elements> getBlocks() {
         return blocks;
     }
-    
+
     public void setBlocks(ArrayList<Elements> blocks) {
         this.blocks = blocks;
     }
-    
+
     public Personaje getPersonaje() {
         return personaje;
     }
-    
+
     public void setPersonaje(Personaje personaje) {
         this.personaje = personaje;
     }
-    
+
     public Cronometro getCronometro() {
         return cronometro;
     }
-    
+
     public void setCronometro(Cronometro cronometro) {
         this.cronometro = cronometro;
     }
-    
+
     public String getFondo() {
         return fondo;
     }
-    
+
     public void setFondo(String fondo) {
         this.fondo = fondo;
     }
-    
+
     public boolean isMonedaRecogida() {
         return monedaRecogida;
     }
-    
+
     public void setMonedaRecogida(boolean monedaRecogida) {
         this.monedaRecogida = monedaRecogida;
     }
-    
+
     public boolean isLlegoMeta() {
         return llegoMeta;
     }
-    
+
     public void setLlegoMeta(boolean llegoMeta) {
         this.llegoMeta = llegoMeta;
     }
-    
+
     public boolean isSilhouette() {
         return silhouette;
     }
-    
+
     public void setSilhouette(boolean silhouette) {
         this.silhouette = silhouette;
     }
-    
+
     public Timer getTimer() {
         return timer;
     }
-    
+
     public void setTimer(Timer timer) {
         this.timer = timer;
     }
-    
+
     public ArrayList<Integer> getChok() {
         return chok;
     }
-    
+
     public void setChok(ArrayList<Integer> chok) {
         this.chok = chok;
     }
-    
+
     public int[] getMov() {
         return mov;
     }
-    
+
     public void setMov(int[] mov) {
         this.mov = mov;
     }
-    
+
     public String getPuntuacion() {
         return puntuacion;
     }
-    
+
     public void setPuntuacion(String puntuacion) {
         this.puntuacion = puntuacion;
     }
-    
+
     public double getSecuencia() {
         return secuencia;
     }
-    
+
     public void setSecuencia(double secuencia) {
         this.secuencia = secuencia;
     }
-    
+
 }
