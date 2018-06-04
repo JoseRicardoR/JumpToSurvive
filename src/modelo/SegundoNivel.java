@@ -44,7 +44,7 @@ public class SegundoNivel extends JFrame implements ActionListener {
         this.tablero.addElements(new Elements("plataforma1.png", 550, 230, 600, 280, 920, 46, 1047, 166));  // bloqeu de hielo medio
         this.tablero.addElements(new Elements("plataforma1.png", 410, 330, 460, 380, 920, 46, 1047, 166));  // bloqeu de hielo abajo
         this.tablero.addElements(new Elements("coin.png", 720, 100, 770, 150, 0, 0, 0, 100)); // moneda
-        this.tablero.addElements(new Elements("flag.png", 70, 330, 140, 400, 0, 0, 428, 428));// meta
+        this.tablero.addElements(new Elements("flag.png", 0, 330, 70, 400, 0, 0, 428, 428));// meta
         this.tablero.addElements(new Elements("spikes.png", 310, 420, 630, 480, 0, 0, 629, 127));// obstaculo
         this.tablero.addElements(new Elements("spikes.png", 630, 420, 950, 480, 0, 0, 629, 127));// obstaculo
     }
