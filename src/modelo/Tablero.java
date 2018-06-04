@@ -212,9 +212,9 @@ public class Tablero extends JPanel implements ActionListener {
                     switch (this.blocks.get(i).getImage()) {
                         case "coin.png":
                             this.setMonedaRecogida(true);
-                            this.sonidoMoneda();
                             System.out.println("Moneda recolectada");
                             removeElements(this.blocks.get(i));
+                            this.sonidoMoneda();
                             break;
                         case "flag.png": {
                             System.out.println("Lleguo a la meta");

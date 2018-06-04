@@ -39,8 +39,12 @@ public class TercerNivel extends JFrame implements ActionListener{
         this.tablero.addElements(new Elements("plataforma1.png", -10, 200, 210, 320, 466, 81, 720, 335)); //Bloqeu inferior izquierdo
         this.tablero.addElements(new Elements("plataforma1.png", 555, 400, 850, 605, 466, 81, 720, 335)); // bloque inferior derecho
         this.tablero.addElements(new Elements("plataforma1.png", 555, 100, 850, 225, 466, 81, 720, 335)); // bloque superior derecho
-        this.tablero.addElements(new Elements("plataforma1.png", 300, 200, 350, 250, 920, 46, 1047, 166)); //Bloque de hielo izquierdo
-        this.tablero.addElements(new Elements("bloque.png", 425, 150, 475, 200, 0, 0, 134, 134));  // bloqeu de hielo derecho
+        this.tablero.addElements(new Elements("plataforma1.png", 300, 130, 350, 180, 920, 46, 1047, 166)); //Bloque de hielo izquierdo arriba 
+        this.tablero.addElements(new Elements("plataforma1.png", 300, 330, 350, 380, 920, 46, 1047, 166)); //Bloque de hielo izquierdo abajo
+        this.tablero.addElements(new Elements("plataforma1.png", 425, 130, 475, 180, 920, 46, 1047, 166)); //Bloque de hielo derecho arriba
+        this.tablero.addElements(new Elements("plataforma1.png", 425, 330, 475, 380, 920, 46, 1047, 166)); //Bloque de hielo derecho abajo
+        //this.tablero.addElements(new Elements("bloque.png", 425, 150, 475, 200, 0, 0, 134, 134));  // bloqeu de hielo derecho arriba
+        //this.tablero.addElements(new Elements("bloque.png", 425, 350, 475, 400, 0, 0, 134, 134));  // bloqeu de hielo derecho abajo
         this.tablero.addElements(new Elements("coin.png", 680, 270, 730, 320, 0, 0, 0, 100)); // moneda
         this.tablero.addElements(new Elements("flag.png", 690, 30, 760, 100, 0, 0, 512, 512));// meta
         this.tablero.addElements(new Elements("spikes.png", 0, 410, 270, 480, 0, 0, 629, 127));// obstaculo
