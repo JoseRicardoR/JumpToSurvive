@@ -39,8 +39,7 @@ public class SegundoNivel extends JFrame implements ActionListener {
     public void anadirElements() {
         this.tablero.addElements(new Elements("plataforma1.png", -10, 80, 310, 200, 466, 81, 720, 250)); //Bloqeu superior izquierdo
         this.tablero.addElements(new Elements("plataforma1.png", -10, 400, 310, 600, 466, 81, 720, 335)); //Bloqeu inferior izquierdo
-        this.tablero.addElements(new Elements("plataforma1.png", 650, 220, 810, 340, 466, 81, 720, 335)); //Bloqeu derecha
-        this.tablero.addElements(new Elements("plataforma1.png", 410, 130, 460, 180, 920, 46, 1047, 166));  // bloqeu de hielo arriba
+        this.tablero.addElements(new Elements("plataforma1.png", 650, 220, 810, 340, 466, 81, 720, 335)); //Bloqeu derecho
         this.tablero.addElements(new Elements("plataforma1.png", 550, 230, 600, 280, 920, 46, 1047, 166));  // bloqeu de hielo medio
         this.tablero.addElements(new Elements("plataforma1.png", 410, 330, 460, 380, 920, 46, 1047, 166));  // bloqeu de hielo abajo
         this.tablero.addElements(new Elements("coin.png", 720, 100, 770, 150, 0, 0, 0, 100)); // moneda
