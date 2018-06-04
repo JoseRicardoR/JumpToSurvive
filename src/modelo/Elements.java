@@ -2,12 +2,14 @@ package modelo;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 
 public class Elements {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image; //Nombre de la imagen
-    private Rectangle rect; // Bordes de colision
+//    private Rectangle rect; // Bordes de colision
+    private Rectangle[] rect;
 
     //Constructor para cualquier elemento
     public Elements(String image, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2) {
@@ -20,7 +22,12 @@ public class Elements {
         this.sx2 = sx2;
         this.sy2 = sy2;
         this.image = image;
-        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
+//        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
+        rect = new Rectangle[4]; //      width     height
+        rect[0] = new Rectangle(dx1, dy1, 7, (int) Point2D.distance(dx1, dy1, dx1, dy2));//izquierda 
+        rect[1] = new Rectangle(sy2, sy1, sy2, sy2);//derecha
+        rect[2] = new Rectangle(sy2, sy1, sy2, sy2);//arriba    
+        rect[3] = new Rectangle(sy2, sy1, sy2, sy2);//abajo
     }
 
     public int getDx1() {
@@ -103,17 +110,24 @@ public class Elements {
         this.image = image;
     }
 
-    public Rectangle getRect() {
-        return rect;
+    public Rectangle getRect(int i) {
+        return rect[i];
     }
 
-    public void setRect(Rectangle rect) {
-        this.rect = rect;
+    public void setRect(Rectangle rect, int i) {
+        this.rect[i] = rect;
     }
 
+//    public Rectangle getRect() {
+//        return rect;
+//    }
+//
+//    public void setRect(Rectangle rect) {
+//        this.rect = rect;
+//    }
     //funciomn que dibja los rectangulos
-    public void debugRect(Graphics g) {
-        g.drawRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+    public void debugRect(Graphics g, int i) {
+        g.drawRect(this.rect[i].x, this.rect[i].y, this.rect[i].width, this.rect[i].height);
     }
 
 }

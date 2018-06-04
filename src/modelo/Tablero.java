@@ -144,8 +144,8 @@ public class Tablero extends JPanel implements ActionListener {
     public void pintarBordes(Graphics g) {
         if (this.silhouette) {
             for (int i = 0; i < this.blocks.size(); i++) {
-                if (this.blocks.get(i).getRect() != null) {
-                    blocks.get(i).debugRect(g);
+                if (this.blocks.get(i).getRect(0) != null) {
+                    blocks.get(i).debugRect(g, 0);
                 }
             }
         }
@@ -230,7 +230,7 @@ public class Tablero extends JPanel implements ActionListener {
         try {
             Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
             for (int i = 0; i < this.blocks.size(); i++) {
-                if (playerBordes.intersects(this.blocks.get(i).getRect())) { //Ciclos que cuquean colisiones
+                if (playerBordes.intersects(this.blocks.get(i).getRect(0))) { //Ciclos que cuquean colisiones
                     //System.out.println("Hay colision con " + i);
 //-----------------Colisiones especiales-----------------------------------------------------------------
                     switch (this.blocks.get(i).getImage()) {
@@ -243,14 +243,14 @@ public class Tablero extends JPanel implements ActionListener {
                         case "flag.png": {
                             System.out.println("Lleguo a la meta");
                             this.setLlegoMeta(true);
-                            this.blocks.get(i).setRect(null);
+                            this.blocks.get(i).setRect(null, 0);
                             this.cronometro.pararCronometro();
                             break;
                         }
                         case "spikes.png": {
                             S = false;
                             System.out.println("Murio");
-                            this.blocks.get(i).setRect(null);
+                            this.blocks.get(i).setRect(null, 0);
                             this.personaje.setVivo(false);
                             this.cronometro.pararCronometro();
                             break;
@@ -268,7 +268,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
 
             for (int j = 0; j < chok.size(); j++) {
-                if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
+                if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect(0)) && p.isSaltando() == false) {
                     //System.out.println("No hay colision");
                     p.setVelocidad(8);
                     p.setCayo(false);
