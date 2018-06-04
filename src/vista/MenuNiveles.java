@@ -1,4 +1,3 @@
-
 package vista;
 
 import javax.swing.JFrame;
@@ -6,14 +5,13 @@ import modelo.PrimerNivel;
 import modelo.SegundoNivel;
 import modelo.TercerNivel;
 
+public class MenuNiveles extends javax.swing.JFrame {
 
-public class MenuNiveles extends javax.swing.JFrame{
-    
     private JFrame frame;
     private PrimerNivel nivelUno;
     private SegundoNivel nivelDos;
     private TercerNivel nivelTres;
-    
+
     /**
      * Creates new form MenuNiveles
      */
@@ -60,7 +58,7 @@ public class MenuNiveles extends javax.swing.JFrame{
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 1 M.png"))); // NOI18N
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +71,7 @@ public class MenuNiveles extends javax.swing.JFrame{
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 2_opt (1).png"))); // NOI18N
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +84,7 @@ public class MenuNiveles extends javax.swing.JFrame{
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/level 3_opt.png"))); // NOI18N
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,13 +154,11 @@ public class MenuNiveles extends javax.swing.JFrame{
             public void run() {
 
             }
-        });   
-        
+        });
+
     }
-    
-    
+
 //Getters y Setteres
-    
     public JFrame getFrame() {
         return frame;
     }
@@ -194,7 +190,7 @@ public class MenuNiveles extends javax.swing.JFrame{
     public void setNivelTres(TercerNivel nivelTres) {
         this.nivelTres = nivelTres;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

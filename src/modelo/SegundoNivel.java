@@ -17,7 +17,8 @@ import javax.swing.Timer;
 import vista.MenuInicio;
 import vista.MenuNiveles;
 
-public class SegundoNivel extends JFrame implements ActionListener{
+public class SegundoNivel extends JFrame implements ActionListener {
+
     private Tablero tablero;
     private Timer timer;
     private Personaje personaje;
@@ -115,18 +116,18 @@ public class SegundoNivel extends JFrame implements ActionListener{
         Mensaje message = new Mensaje(null, null);
         if (this.tablero.isLlegoMeta()) {
             String p[] = this.cronometro.getTexto().split(":");
-            puntua = (Integer.parseInt(p[1])*10)  + (Integer.parseInt(p[2])/10);
+            puntua = (Integer.parseInt(p[1]) * 10) + (Integer.parseInt(p[2]) / 10);
             if (this.tablero.isMonedaRecogida()) {
                 puntua = puntua + 100;
             }
             registrarPuntuacion(puntua);
             recordPuntuacion();
             this.tablero.setPuntuacion(String.valueOf(puntua));
-            if(recordPuntuacion() == puntua ){
+            if (recordPuntuacion() == puntua) {
                 message.setTitulo("Nuevo Record");
                 message.setMensaje("Puntuacion mas alta: " + this.tablero.getPuntuacion());
                 op = message.show();
-            } else{
+            } else {
                 message.setTitulo("Completado");
                 message.setMensaje("Puntuacion: " + this.tablero.getPuntuacion());
                 op = message.show();
@@ -135,33 +136,33 @@ public class SegundoNivel extends JFrame implements ActionListener{
         }
         return op;
     }
-    
-    public void registrarPuntuacion(int a) throws FileNotFoundException, IOException{
+
+    public void registrarPuntuacion(int a) throws FileNotFoundException, IOException {
         // Se obtiene a fecha del sismtema para el regstro de la puntuacion
         Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         // Se crea un registro con el identifiacdor del nivel, la puntuacion y la hora separada por -
-        String registro ="2"+ " - "+ a + " - "+ hourdateFormat.format(date); 
+        String registro = "2" + " - " + a + " - " + hourdateFormat.format(date);
         // Se instancian los io, y el archivo de lectura
-        File fichero = new File ("Persistencia.txt");
+        File fichero = new File("Persistencia.txt");
         FileWriter outsputStream = new FileWriter(fichero, true);
         outsputStream.write(registro);
         // cada registro en una linea de texto
-        outsputStream.write(System.getProperty( "line.separator" ));
-       // Se cierra io
+        outsputStream.write(System.getProperty("line.separator"));
+        // Se cierra io
         outsputStream.close();
     }
-    
-     public int recordPuntuacion() throws FileNotFoundException, IOException{
-        File fichero = new File ("Persistencia.txt");
+
+    public int recordPuntuacion() throws FileNotFoundException, IOException {
+        File fichero = new File("Persistencia.txt");
         Scanner input = new Scanner(fichero);
         int record = 0;
-        while(input.hasNextLine()){
+        while (input.hasNextLine()) {
             String[] text = input.nextLine().split(" - ");
-            if(text[0].equals("2")){
-                if( Integer.parseInt(text[1]) > record ){
+            if (text[0].equals("2")) {
+                if (Integer.parseInt(text[1]) > record) {
                     record = Integer.parseInt(text[1]);
-                } 
+                }
             }
         }
         return record;
@@ -178,12 +179,12 @@ public class SegundoNivel extends JFrame implements ActionListener{
         }
         return op;
     }
-    
-     public int gameOver2(){
+
+    public int gameOver2() {
         int op = 100;
         String m = this.tablero.getCronometro().getTexto();
         Mensaje message = new Mensaje(null, null);
-        if(m.equals("00:00:000")){
+        if (m.equals("00:00:000")) {
             message.setTitulo("Game Over");
             message.setMensaje("Se acabo el tiempo");
             op = message.show2();
@@ -227,11 +228,11 @@ public class SegundoNivel extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-    try {
-        options(puntuacion());
-    } catch (IOException ex) {
-        Logger.getLogger(SegundoNivel.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            options(puntuacion());
+        } catch (IOException ex) {
+            Logger.getLogger(SegundoNivel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         options(gameOver());
         options(gameOver2());
     }

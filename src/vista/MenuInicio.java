@@ -1,4 +1,3 @@
-
 package vista;
 
 import java.awt.Desktop;
@@ -21,7 +20,7 @@ public class MenuInicio extends javax.swing.JFrame {
         this.setResizable(false);
         //this.setVisible(true);
 //        this.setLocationRelativeTo(null); 
-        this.setSize( new java.awt.Dimension(800, 500));
+        this.setSize(new java.awt.Dimension(800, 500));
     }
 
     /**
@@ -87,13 +86,13 @@ public class MenuInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    MostrarCreditos();
+        MostrarCreditos();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String link ="http://www.rdontheroad.com/es/bogota/?utm_source=google&utm_medium=cpc&utm_campaign=eventos-OTR18-bogota-google&utm_content=&gclid=EAIaIQobChMIsJ3nvsGh2wIVZ8ThCh02ygu1EAEYASAAEgJ-XPD_BwE";
+        String link = "http://www.rdontheroad.com/es/bogota/?utm_source=google&utm_medium=cpc&utm_campaign=eventos-OTR18-bogota-google&utm_content=&gclid=EAIaIQobChMIsJ3nvsGh2wIVZ8ThCh02ygu1EAEYASAAEgJ-XPD_BwE";
         try {
-            Desktop.getDesktop().browse(new URI (link));
+            Desktop.getDesktop().browse(new URI(link));
         } catch (URISyntaxException ex) {
             Logger.getLogger(MenuInicio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -102,13 +101,14 @@ public class MenuInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MenuNiveles menu = new MenuNiveles( this );
+        MenuNiveles menu = new MenuNiveles(this);
         setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-      static MenuInicio interfaz = new MenuInicio();
+    static MenuInicio interfaz = new MenuInicio();
+
     /**
      * @param args the command line arguments
      */
@@ -118,7 +118,7 @@ public class MenuInicio extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-      
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -141,18 +141,19 @@ public class MenuInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            interfaz.setVisible(true);
-            interfaz.setResizable(false);
-            interfaz.setSize( new java.awt.Dimension(800, 500));
-            interfaz.setLocationRelativeTo(null); 
+                interfaz.setVisible(true);
+                interfaz.setResizable(false);
+                interfaz.setSize(new java.awt.Dimension(800, 500));
+                interfaz.setLocationRelativeTo(null);
             }
         });
     }
-    public void MostrarCreditos(){
+
+    public void MostrarCreditos() {
         Icon icono = new ImageIcon(getClass().getResource("/vista/icono.png"));
-        JOptionPane.showMessageDialog(rootPane,"Jose Ricardo Rincon\nCamilo Andres Usuga\nYoryi Daniel Martinez ","Desarrolladores",JOptionPane.INFORMATION_MESSAGE,icono);
+        JOptionPane.showMessageDialog(rootPane, "Jose Ricardo Rincon\nCamilo Andres Usuga\nYoryi Daniel Martinez ", "Desarrolladores", JOptionPane.INFORMATION_MESSAGE, icono);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
