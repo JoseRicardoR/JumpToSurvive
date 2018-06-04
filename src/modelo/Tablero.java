@@ -144,8 +144,10 @@ public class Tablero extends JPanel implements ActionListener {
     public void pintarBordes(Graphics g) {
         if (this.silhouette) {
             for (int i = 0; i < this.blocks.size(); i++) {
-                if (this.blocks.get(i).getRect(0) != null) {
-                    blocks.get(i).debugRect(g, 0);
+                for (int j = 0; j < 4; j++) {
+                    if (this.blocks.get(i).getRect(j) != null) {
+                        blocks.get(i).debugRect(g, j);
+                    }
                 }
             }
         }
@@ -230,49 +232,52 @@ public class Tablero extends JPanel implements ActionListener {
         try {
             Rectangle playerBordes = p.getBounds(mov);//Bordes de colision del personaje
             for (int i = 0; i < this.blocks.size(); i++) {
-                if (playerBordes.intersects(this.blocks.get(i).getRect(0))) { //Ciclos que cuquean colisiones
-                    //System.out.println("Hay colision con " + i);
+                for (int k = 0; k < 4; k++) {
+                    if (playerBordes.intersects(this.blocks.get(i).getRect(k))) { //Ciclos que cuquean colisiones
+                        //System.out.println("Hay colision con " + i);
 //-----------------Colisiones especiales-----------------------------------------------------------------
-                    switch (this.blocks.get(i).getImage()) {
-                        case "coin.png":
-                            this.setMonedaRecogida(true);
-                            System.out.println("Moneda recolectada");
-                            removeElements(this.blocks.get(i));
-                            this.sonidoMoneda();
-                            break;
-                        case "flag.png": {
-                            System.out.println("Lleguo a la meta");
-                            this.setLlegoMeta(true);
-                            this.blocks.get(i).setRect(null, 0);
-                            this.cronometro.pararCronometro();
-                            break;
+                        switch (this.blocks.get(i).getImage()) {
+                            case "coin.png":
+                                this.setMonedaRecogida(true);
+                                System.out.println("Moneda recolectada");
+                                removeElements(this.blocks.get(i));
+                                this.sonidoMoneda();
+                                break;
+                            case "flag.png": {
+                                System.out.println("Lleguo a la meta");
+                                this.setLlegoMeta(true);
+                                this.blocks.get(i).setRect(null, k);
+                                this.cronometro.pararCronometro();
+                                break;
+                            }
+                            case "spikes.png": {
+                                S = false;
+                                System.out.println("Murio");
+                                this.blocks.get(i).setRect(null, k);
+                                this.personaje.setVivo(false);
+                                this.cronometro.pararCronometro();
+                                break;
+                            }
+                            default:
+                                break;
                         }
-                        case "spikes.png": {
-                            S = false;
-                            System.out.println("Murio");
-                            this.blocks.get(i).setRect(null, 0);
-                            this.personaje.setVivo(false);
-                            this.cronometro.pararCronometro();
-                            break;
-                        }
-                        default:
-                            break;
-                    }
 //----------------------------------------------------------------------------------
-                    if (!chok.contains(i)) {
-                        p.setVelocidad(0);
-                        p.setCayo(true);
-                        chok.add(i);
+                        if (!chok.contains(i)) {
+                            p.setVelocidad(0);
+                            p.setCayo(true);
+                            chok.add(i);
+                        }
                     }
                 }
             }
-
             for (int j = 0; j < chok.size(); j++) {
-                if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect(0)) && p.isSaltando() == false) {
-                    //System.out.println("No hay colision");
-                    p.setVelocidad(8);
-                    p.setCayo(false);
-                    chok.remove(j);
+                for (int k = 0; k < 4; k++) {
+                    if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect(k)) && p.isSaltando() == false) {
+                        //System.out.println("No hay colision");
+                        p.setVelocidad(8);
+                        p.setCayo(false);
+                        chok.remove(j);
+                    }
                 }
             }
 
