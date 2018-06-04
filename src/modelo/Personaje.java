@@ -7,7 +7,7 @@ public class Personaje {
 
     private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;//coordenadas de imagen
     private String image;       //Imagen 
-    private double velocidad = 5;
+    private int velocidad = 10;
     private boolean cayo = false;
     private boolean vivo = true;
     private boolean saltando = false;
@@ -25,11 +25,11 @@ public class Personaje {
 
     }
 
-    public synchronized void caida(int[] movimiento) { //movimiento
+    public void mov(int[] movimiento, int XoY, int cantidad) {
         new Thread() {
             @Override
             public void run() {
-                movimiento[1] += velocidad;
+                movimiento[XoY] += cantidad;
             }
         }.start();
     }
@@ -156,15 +156,15 @@ public class Personaje {
         this.image = image;
     }
 
-    public double getVelocidad() {
+    public int getVelocidad() {
         return velocidad;
     }
 
-    public void setVelocidad(double velocidad) {
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
-    public void plusVelocidad(double velocidad) {
+    public void plusVelocidad(int velocidad) {
         this.velocidad += velocidad;
     }
 

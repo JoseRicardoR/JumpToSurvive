@@ -26,8 +26,7 @@ public class Tablero extends JPanel implements ActionListener {
     private Cronometro cronometro;
     private String fondo;
     private String puntuacion;
-    private boolean monedaRecogida, llegoMeta;
-    private boolean silhouette;
+    private boolean monedaRecogida, llegoMeta, silhouette;
     private Timer timer;
     private int[] mov;
     private double secuencia;
@@ -82,7 +81,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
         secuencia += 0.5;
         pintarMoneda(g);
-       
+
         pintarBordes(g);//funcionPintarBordesDe colision()
 
         //Funcion pinta movimiento del personaje
@@ -90,18 +89,25 @@ public class Tablero extends JPanel implements ActionListener {
         personaje.debugRect(g);
         pintarPersonaje(g, personaje);
         //Funcio que pinta la caida
-
+        boolean modular = false;
         if (personaje.isSaltando()) {
             int altura_salto = 25;
+            modular = !modular;
+            if (contasalto > 15 && modular) {
+                if (personaje.getVelocidad() != 0) {
+                    personaje.plusVelocidad(+1);
+                }
+            }
             if (contasalto > altura_salto) {
                 contasalto = 0;
                 personaje.setSaltando(false);
+
             }
             contasalto += 1;
+
         }
 
-        personaje.caida(mov);
-
+        personaje.mov(mov, 1, personaje.getVelocidad());
     }
 
 //Funcion que carga las imagenes----------------------------------------
@@ -122,8 +128,8 @@ public class Tablero extends JPanel implements ActionListener {
     public void pintarBordes(Graphics g) {
         if (this.silhouette) {
             for (int i = 0; i < this.blocks.size(); i++) {
-                if(this.blocks.get(i).getRect() != null){
-                blocks.get(i).debugRect(g);
+                if (this.blocks.get(i).getRect() != null) {
+                    blocks.get(i).debugRect(g);
                 }
             }
         }
@@ -136,7 +142,7 @@ public class Tablero extends JPanel implements ActionListener {
             Elements b = iterator.next();
             Image p = loadImage(b.getImage());
             if (!b.getImage().equals("coin.png")) {
-                 G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
+                G.drawImage(p, b.getDx1(), b.getDy1(), b.getDx2(), b.getDy2(), b.getSx1(), b.getSy1(), b.getSx2(), b.getSy2(), this);
             }
         }
     }
@@ -153,7 +159,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
             g.drawImage(coin, moneda.getDx1(), moneda.getDy1(), moneda.getDx2(), moneda.getDy2(), 100 * (int) secuencia, moneda.getSy1(), 100 * (int) secuencia + 100, moneda.getSy2(), this);
         }
-    }  
+    }
 
 //controles del juego--------------------------------------------
     public class EventosTeclado extends KeyAdapter {
@@ -172,24 +178,24 @@ public class Tablero extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_D) {
                 personaje.setDx1(0);
                 personaje.setDx2(50);
-                mov[0] += 4;
+                personaje.mov(mov, 0, 4);
             }
 
             if (key == KeyEvent.VK_A) {
 
                 personaje.setDx2(0);
                 personaje.setDx1(50);
-                mov[0] += -4;
+                personaje.mov(mov, 0, -4);
             }
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
-                personaje.setVelocidad(-5);
+                personaje.setVelocidad(-8);
                 personaje.setSaltando(true);
                 personaje.setCayo(false);
 
             }
         }
     }
-    
+
     //Todas las funciones en conjunto-------------------------------------
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -240,7 +246,7 @@ public class Tablero extends JPanel implements ActionListener {
             for (int j = 0; j < chok.size(); j++) {
                 if (!playerBordes.intersects(this.blocks.get(chok.get(j)).getRect()) && p.isSaltando() == false) {
                     //System.out.println("No hay colision");
-                    p.setVelocidad(5);
+                    p.setVelocidad(8);
                     p.setCayo(false);
                     chok.remove(j);
                 }
@@ -250,16 +256,16 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-   
-//Sonido de fondo-----------------------------------    
-    public void sonido(){
-        try {
-             url = new URL("file:wind01.wav");
-             AudioClip ac = Applet.newAudioClip(url);
-             ac.loop();
-         } catch (MalformedURLException ex) {
 
-         }
+//Sonido de fondo-----------------------------------    
+    public void sonido() {
+        try {
+            url = new URL("file:wind01.wav");
+            AudioClip ac = Applet.newAudioClip(url);
+            ac.loop();
+        } catch (MalformedURLException ex) {
+
+        }
     }
 
 //Getters y setters de los atributos de tablero------------------------------------------------
