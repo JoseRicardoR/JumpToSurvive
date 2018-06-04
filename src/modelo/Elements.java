@@ -24,8 +24,8 @@ public class Elements {
         this.image = image;
 //        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
         rect = new Rectangle[4]; //      width     height
-        rect[0] = new Rectangle(dx1, dy1, 10, (int) Point2D.distance(dx1, dy1, dx1, dy2));//izquierda 
-        rect[1] = new Rectangle(dx2 -10, dy1, 10,(int) Point2D.distance(dx1, dy1, dx1, dy2) );//derecha
+        rect[0] = new Rectangle(dx1, dy1+10, 10, (int) Point2D.distance(dx1, dy1+10, dx1, dy2-10));//izquierda 
+        rect[1] = new Rectangle(dx2 -10, dy1+10, 10,(int) Point2D.distance(dx1, dy1+10, dx1, dy2-10) );//derecha
         rect[2] = new Rectangle( dx1, dy1 ,(int) Point2D.distance(dx1, dy1, dx2, dy1+10)  , 10);//arriba    
         rect[3] = new Rectangle(dx1, dy2-10, (int) Point2D.distance(dx1, dy1, dx2, dy1+10), 10);//abajo
     }
