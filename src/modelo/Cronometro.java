@@ -8,7 +8,7 @@ public class Cronometro extends Thread {
     Thread hilo;
 
     public Cronometro() {
-        this.texto = "00:00:000";  //Empieza en ceros
+        this.texto = "01:00:000";  //Empieza en ceros
     }
 
     public boolean isCronometroActivo() {
@@ -36,7 +36,7 @@ public class Cronometro extends Thread {
     }
 
     public void run() {
-        Integer minutos = 0, segundos = 0, milesimas = 0;
+        Integer minutos = 0, segundos = 9, milesimas = 1000;
         //min es minutos, seg es segundos y mil es milesimas de segundo
         String min = "", seg = "", mil = "";
         try {
@@ -45,19 +45,26 @@ public class Cronometro extends Thread {
             while (cronometroActivo) {
                 Thread.sleep(4);
                 //Incrementamos 4 milesimas de segundo
-                milesimas += 4;
+                milesimas -= 4;
 
                 //Cuando llega a 1000 osea 1 segundo aumenta 1 segundo
                 //y las milesimas de segundo de nuevo a 0
-                if (milesimas == 1000) {
-                    milesimas = 0;
-                    segundos += 1;
+                if (milesimas == 0) {
+                    milesimas = 1000;
+                    segundos -= 1;
                     //Si los segundos llegan a 60 entonces aumenta 1 los minutos
                     //y los segundos vuelven a 0
-                    if (segundos == 60) {
-                        segundos = 0;
-                        minutos++;
+                    if (segundos == 0) {
+                        segundos = 60;
+                        minutos--;
                     }
+                    
+                if( minutos<0 ){
+                    minutos = 0;
+                    milesimas = 0;
+                    segundos =0;
+                    pararCronometro();
+                }
                 }
 
                 //Esto solamente es estetica para que siempre este en formato
