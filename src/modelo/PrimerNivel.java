@@ -52,7 +52,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true);
     }
 
     public Tablero getTablero() {

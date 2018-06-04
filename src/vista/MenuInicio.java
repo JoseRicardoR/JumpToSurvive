@@ -11,15 +11,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class MenuInicio extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Interfaz
      */
     public MenuInicio() {
         initComponents();
         this.setResizable(false);
-        //this.setVisible(true);
-//        this.setLocationRelativeTo(null); 
         this.setSize(new java.awt.Dimension(800, 500));
     }
 

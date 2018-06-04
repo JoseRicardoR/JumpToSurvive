@@ -31,7 +31,6 @@ public class Tablero extends JPanel implements ActionListener {
     private int[] mov;
     private double secuencia;
     private int contasalto;
-    private URL url = null;
 
     public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
@@ -47,7 +46,6 @@ public class Tablero extends JPanel implements ActionListener {
         addKeyListener(new EventosTeclado());
         setFocusable(true);
         this.contasalto = 0;
-        sonido();
     }
 
 //Añadir elementos al arrayList blocks-----------------------------------
@@ -214,6 +212,7 @@ public class Tablero extends JPanel implements ActionListener {
                     switch (this.blocks.get(i).getImage()) {
                         case "coin.png":
                             this.setMonedaRecogida(true);
+                            this.sonidoMoneda();
                             System.out.println("Moneda recolectada");
                             removeElements(this.blocks.get(i));
                             break;
@@ -256,13 +255,14 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-
-//Sonido de fondo-----------------------------------    
-    public void sonido() {
+    
+//sonido de moneda recolectadad--------------------------------------------
+    public void sonidoMoneda() {
+        URL url = null;
         try {
-            url = new URL("file:wind01.wav");
+            url = new URL("file:coin.wav");
             AudioClip ac = Applet.newAudioClip(url);
-            ac.loop();
+            ac.play();
         } catch (MalformedURLException ex) {
 
         }

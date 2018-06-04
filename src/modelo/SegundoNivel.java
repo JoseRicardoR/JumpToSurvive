@@ -57,7 +57,6 @@ public class SegundoNivel extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     public Tablero getTablero() {
