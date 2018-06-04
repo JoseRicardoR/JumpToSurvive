@@ -111,9 +111,9 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         Mensaje message = new Mensaje(null, null);
         if (this.tablero.isLlegoMeta()) {
             String p[] = this.cronometro.getTexto().split(":");
-            puntua = 100 - Integer.parseInt(p[1]);
+            puntua = (Integer.parseInt(p[1])*10 ) + (Integer.parseInt(p[2])/10);
             if (this.tablero.isMonedaRecogida()) {
-                puntua = puntua + 10;
+                puntua = puntua + 100;
             }
             registrarPuntuacion(puntua);
             recordPuntuacion();

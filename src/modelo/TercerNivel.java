@@ -114,11 +114,11 @@ public class TercerNivel extends JFrame implements ActionListener{
         Mensaje message = new Mensaje(null, null);
         if (this.tablero.isLlegoMeta()) {
             String p[] = this.cronometro.getTexto().split(":");
-            puntua = 100 - Integer.parseInt(p[1]);
+            puntua = (Integer.parseInt(p[1])*10)  + (Integer.parseInt(p[2])/10);
             if (this.tablero.isMonedaRecogida()) {
-                puntua = puntua + 10;
+                puntua = puntua + 100;
             }
-           registrarPuntuacion(puntua);
+            registrarPuntuacion(puntua);
             recordPuntuacion();
             this.tablero.setPuntuacion(String.valueOf(puntua));
             if(recordPuntuacion() == puntua ){
@@ -177,6 +177,19 @@ public class TercerNivel extends JFrame implements ActionListener{
         }
         return op;
     }
+    
+     public int gameOver2(){
+        int op = 100;
+        String m = this.tablero.getCronometro().getTexto();
+        Mensaje message = new Mensaje(null, null);
+        if(m.equals("00:00:000")){
+            message.setTitulo("Game Over");
+            message.setMensaje("Se acabo el tiempo");
+            op = message.show2();
+            this.tablero.getCronometro().setTexto("01:00:000");
+        }
+        return op;
+    }
 
     public void options(int o) {
         switch (o) {
@@ -219,6 +232,7 @@ public class TercerNivel extends JFrame implements ActionListener{
         Logger.getLogger(TercerNivel.class.getName()).log(Level.SEVERE, null, ex);
     }
         options(gameOver());
+        options(gameOver2());
     }
 }
 

@@ -36,7 +36,7 @@ public class Cronometro extends Thread {
     }
 
     public void run() {
-        Integer minutos = 0, segundos = 9, milesimas = 1000;
+        Integer minutos = 0, segundos = 59, milesimas = 1000;
         //min es minutos, seg es segundos y mil es milesimas de segundo
         String min = "", seg = "", mil = "";
         try {
