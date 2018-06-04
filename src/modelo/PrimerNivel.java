@@ -40,7 +40,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
         this.tablero.addElements(new Elements("plataforma1.png", 300, 250, 350, 300, 920, 46, 1047, 166)); //Bloque de hielo izquierdo
         this.tablero.addElements(new Elements("plataforma1.png", 455, 250, 505, 300, 920, 46, 1047, 166));  // bloqeu de hielo derecho
         this.tablero.addElements(new Elements("coin.png", 380, 130, 430, 180, 0, 0, 0, 100)); // moneda
-        this.tablero.addElements(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 512, 512));// meta
+        this.tablero.addElements(new Elements("flag.png", 690, 255, 760, 325, 0, 0, 428, 428));// meta
         this.tablero.addElements(new Elements("spikes.png", 250, 410, 555, 480, 0, 0, 629, 127));// obstaculo
     }
 

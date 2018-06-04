@@ -46,7 +46,7 @@ public class TercerNivel extends JFrame implements ActionListener{
         //this.tablero.addElements(new Elements("bloque.png", 425, 150, 475, 200, 0, 0, 134, 134));  // bloqeu de hielo derecho arriba
         //this.tablero.addElements(new Elements("bloque.png", 425, 350, 475, 400, 0, 0, 134, 134));  // bloqeu de hielo derecho abajo
         this.tablero.addElements(new Elements("coin.png", 680, 270, 730, 320, 0, 0, 0, 100)); // moneda
-        this.tablero.addElements(new Elements("flag.png", 690, 30, 760, 100, 0, 0, 512, 512));// meta
+        this.tablero.addElements(new Elements("flag.png", 690, 30, 760, 100, 0, 0, 428, 428));// meta
         this.tablero.addElements(new Elements("spikes.png", 0, 410, 270, 480, 0, 0, 629, 127));// obstaculo
         this.tablero.addElements(new Elements("spikes.png", 270, 410, 555, 480, 0, 0, 629, 127));// obstaculo
     }
