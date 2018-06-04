@@ -25,9 +25,9 @@ public class Elements {
 //        this.rect = new Rectangle(dx1, dy1, dx2 - dx1, dy2 - dy1);
         rect = new Rectangle[4]; //      width     height
         rect[0] = new Rectangle(dx1, dy1, 7, (int) Point2D.distance(dx1, dy1, dx1, dy2));//izquierda 
-        rect[1] = new Rectangle(sy2, sy1, sy2, sy2);//derecha
-        rect[2] = new Rectangle(sy2, sy1, sy2, sy2);//arriba    
-        rect[3] = new Rectangle(sy2, sy1, sy2, sy2);//abajo
+        rect[1] = new Rectangle(dx2 -7, dy1, 7,(int) Point2D.distance(dx1, dy1, dx1, dy2) );//derecha
+        rect[2] = new Rectangle( dx1, dy1 ,(int) Point2D.distance(dx1, dy1, dx2, dy1+7)  , 7);//arriba    
+        rect[3] = new Rectangle(dx1, dy2-7, (int) Point2D.distance(dx1, dy1, dx2, dy1+7), 7);//abajo
     }
 
     public int getDx1() {
