@@ -107,7 +107,7 @@ public class Tablero extends JPanel implements ActionListener {
         //Funcio que pinta la caida
         boolean modular = false;
         if (personaje.isSaltando()) {
-            int altura_salto = 25;
+            int altura_salto = 15;
             modular = !modular;
             if (contasalto > 15 && modular) {
                 if (personaje.getVelocidad() != 0) {
