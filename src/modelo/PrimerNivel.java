@@ -207,7 +207,7 @@ public final class PrimerNivel extends JFrame implements ActionListener {
                 break;
         }
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         try {

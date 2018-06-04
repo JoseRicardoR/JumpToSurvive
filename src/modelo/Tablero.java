@@ -1,5 +1,7 @@
 package modelo;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -13,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Font;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Tablero extends JPanel implements ActionListener {
 
@@ -28,6 +32,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int[] mov;
     private double secuencia;
     private int contasalto;
+    private URL url = null;
 
     public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
@@ -43,7 +48,7 @@ public class Tablero extends JPanel implements ActionListener {
         addKeyListener(new EventosTeclado());
         setFocusable(true);
         this.contasalto = 0;
-
+        sonido();
     }
 
 //Añadir elementos al arrayList blocks-----------------------------------
@@ -184,7 +189,7 @@ public class Tablero extends JPanel implements ActionListener {
             }
         }
     }
-
+    
     //Todas las funciones en conjunto-------------------------------------
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -244,6 +249,17 @@ public class Tablero extends JPanel implements ActionListener {
         } catch (Exception e) {
         }
 
+    }
+   
+//Sonido de fondo-----------------------------------    
+    public void sonido(){
+        try {
+             url = new URL("file:wind01.wav");
+             AudioClip ac = Applet.newAudioClip(url);
+             ac.loop();
+         } catch (MalformedURLException ex) {
+
+         }
     }
 
 //Getters y setters de los atributos de tablero------------------------------------------------
