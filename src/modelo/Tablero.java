@@ -31,6 +31,7 @@ public class Tablero extends JPanel implements ActionListener {
     private int[] mov;
     private double secuencia;
     private int contasalto;
+    private boolean A, W, S, D;
 
     public Tablero(Personaje jugador, Cronometro cronometro, String fondo) {
         this.blocks = new ArrayList();
@@ -72,7 +73,23 @@ public class Tablero extends JPanel implements ActionListener {
         pintarElements(g, blocks); // Pinta el arrayList blocks
 
         g.drawString(this.cronometro.getTexto(), 350, 20); //Pinta el cronometro
-
+// combinar teclas
+        if (A) {
+            personaje.setDx2(0);
+            personaje.setDx1(50);
+            personaje.mov(mov, 0, -4);
+        }
+        if (D) {
+            personaje.setDx1(0);
+            personaje.setDx2(50);
+            personaje.mov(mov, 0, 4);
+        }
+        if (W) {
+            personaje.setVelocidad(-8);
+            personaje.setSaltando(true);
+            personaje.setCayo(false);
+        }
+//----------------------------------------
         //Funcion que pinta los elementos con secuencia
         if (secuencia == 9) {
             secuencia = 0;
@@ -174,22 +191,28 @@ public class Tablero extends JPanel implements ActionListener {
             }
             //  Movimiento del personaje-------------------------------------------------------------------------------------------
             if (key == KeyEvent.VK_D) {
-                personaje.setDx1(0);
-                personaje.setDx2(50);
-                personaje.mov(mov, 0, 4);
+                D = true;
             }
 
             if (key == KeyEvent.VK_A) {
-
-                personaje.setDx2(0);
-                personaje.setDx1(50);
-                personaje.mov(mov, 0, -4);
+                A = true;
             }
             if (key == KeyEvent.VK_W && personaje.isCayo()) {
-                personaje.setVelocidad(-8);
-                personaje.setSaltando(true);
-                personaje.setCayo(false);
+                W = true;
+            }
+        }
 
+        @Override
+        public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_A) {
+                A = false;
+            }
+            if (key == KeyEvent.VK_D) {
+                D = false;
+            }
+            if (key == KeyEvent.VK_W) {
+                W = false;
             }
         }
     }
@@ -255,7 +278,7 @@ public class Tablero extends JPanel implements ActionListener {
         }
 
     }
-    
+
 //sonido de moneda recolectadad--------------------------------------------
     public void sonidoMoneda() {
         URL url = null;
