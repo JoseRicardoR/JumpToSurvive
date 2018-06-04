@@ -35,6 +35,7 @@ public class Cronometro extends Thread {
         this.hilo = hilo;
     }
 
+    @Override
     public void run() {
         Integer minutos = 0, segundos = 59, milesimas = 1000;
         //min es minutos, seg es segundos y mil es milesimas de segundo
