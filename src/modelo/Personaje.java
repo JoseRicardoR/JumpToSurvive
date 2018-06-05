@@ -177,7 +177,7 @@ public class Personaje {
     }
 
     public void debugRect(Graphics g) {
-        g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
+       // g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
     }
 
     public boolean isCayo() {

@@ -38,7 +38,6 @@ public class Tablero extends JPanel implements ActionListener {
         this.blocks = new ArrayList();
         this.chok = new ArrayList();
         this.chok1 = new ArrayList();
-
         this.cronometro = cronometro;
         this.personaje = jugador;
         this.fondo = fondo;
