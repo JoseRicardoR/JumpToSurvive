@@ -305,6 +305,7 @@ public class Tablero extends JPanel implements ActionListener {
                 break;
             case 3:
                 personaje.setSaltando(false);
+                this.contasalto = 0;
                 m[1] += empuja;
                 break;
         }
