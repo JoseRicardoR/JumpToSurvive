@@ -30,15 +30,20 @@ public class MenuInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/fondo 2.2.png"))); // NOI18N
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(280, 90, 430, 100);
 
         jButton4.setText("Credits");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -71,14 +76,10 @@ public class MenuInicio extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(420, 230, 130, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondo 2.2.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 90, 430, 100);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/background.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/background.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1229, 670);
+        jLabel1.setBounds(0, 0, 790, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
